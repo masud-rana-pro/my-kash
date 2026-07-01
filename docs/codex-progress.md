@@ -10,11 +10,12 @@
 
 - Step 00 planning foundation: planning files, architecture rules, Bengali learning workflow, Git/GitHub workflow rules, and progress tracking file prepared.
 - Step 00b learning documentation rules: strengthened the Bengali learning file requirements before Step 01.
+- Step 01 project structure: created focused root folders for the future Flutter app, Spring Boot backend, helper scripts, and added a project `.gitignore`.
 
 ## Last Commit
 
-- Last commit message: `step-00: add git workflow and progress tracking rules`
-- Last commit hash: `6cc83f0`
+- Last commit message: `step-00b: strengthen learning documentation rules`
+- Last commit hash: `ed23113`
 
 ## Important Architecture Decisions
 
@@ -33,6 +34,7 @@
 
 - Repository workspace created at `D:\github\my-kash`.
 - Project name changed to SmartKash.
+- GitHub remote `origin` is configured and push worked for previous workflow commits.
 
 ## Pending Manual Setup
 
@@ -44,11 +46,12 @@
 ## Known Issues
 
 - No implementation code exists yet.
-- `docs/codex-progress.md` will be updated after each step; the current Step 00b commit hash will be reported after commit.
+- Step 01 creates structure only; Flutter and Spring Boot app generators have not been run yet.
+- The Step 01 commit hash will be reported after commit.
 
 ## Next Recommended Step
 
-- Step 01: add project structure after Git workflow commit is pushed.
+- Step 02: add Flutter app skeleton under `apps/mobile/` after reviewing the planning docs.
 
 ## Standard Step Completion Format
 
