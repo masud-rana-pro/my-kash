@@ -1,0 +1,79 @@
+# SmartKash Security Plan
+
+## Authentication
+
+- Flutter uses Firebase Phone Auth test phone numbers and fixed OTP codes in MVP.
+- Real SMS OTP is not used to avoid billing requirements.
+- Flutter sends Firebase ID token to Spring Boot.
+- Spring Boot verifies the Firebase token.
+- Spring Boot issues its own backend JWT for API access.
+
+## Authorization
+
+- Use simple `users.role`: `CUSTOMER`, `MERCHANT`, `ADMIN`.
+- Admin routes and admin APIs require authenticated `ADMIN` role.
+- Customer and merchant users must not access admin pages or admin APIs.
+- Avoid complex role/permission management in MVP Phase 1.
+
+## PIN Security
+
+- PIN must be hashed in the backend.
+- Raw PIN must never be stored.
+- PIN verification must happen only in the backend.
+- Money-changing APIs require authenticated user plus PIN confirmation.
+- PIN verification attempts must be rate-limited.
+- After multiple wrong PIN attempts, money-changing actions must be temporarily blocked.
+
+## Money-Changing API Security
+
+Every money-changing request must validate:
+
+- Authenticated backend JWT.
+- User account status.
+- PIN confirmation.
+- Sender wallet status.
+- Sender balance, when debit is required.
+- Idempotency key.
+- Feature-specific receiver or target resource.
+
+Every money-changing operation must run in a database transaction and use optimistic locking or another safe locking strategy for wallet balance updates.
+
+## QR Send Money Security
+
+QR Send Money must validate:
+
+- QR payload format.
+- Registered receiver user/account.
+- Receiver account status.
+- Sender balance.
+- PIN.
+- Idempotency key.
+
+The backend must not trust QR data without resolving it against registered backend records.
+
+## Secret Management
+
+Do not hardcode:
+
+- Database credentials.
+- Firebase credentials.
+- JWT secrets.
+- Environment-specific values.
+
+Use environment variables based on `.env.example`.
+
+## Audit
+
+Admin actions such as Add Money approval, Add Money rejection, Loan approval, and Loan rejection should create admin audit log records.
+
+Critical money operations such as Send Money, Merchant Payment, Savings Deposit, Mobile Recharge, and Add Money approval should also be auditable through transaction references, ledger entries, and audit records where appropriate.
+
+## API Safety Rules
+
+- Controllers must be thin and must not contain business logic.
+- Business rules must live in service classes.
+- Repositories must only handle database access.
+- Entities must not be returned directly from APIs.
+- DTOs must be used for request and response payloads.
+- Bean Validation annotations should validate incoming request DTOs.
+- Global exception handling should return consistent API errors.
