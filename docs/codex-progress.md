@@ -13,11 +13,12 @@
 - Step 01 project structure: created focused root folders for the future Flutter app, Spring Boot backend, helper scripts, and added a project `.gitignore`.
 - Step 02 Flutter app skeleton: created the Android-first Flutter shell under `apps/mobile/` with Riverpod, go_router, base theme/config, feature-first folders, and a placeholder home screen.
 - Step 03 Spring Boot backend skeleton: created the Maven/Java 21 Spring Boot backend shell under `services/backend/` with base dependencies, environment-based config placeholders, package markers, Maven Wrapper, and context-load test.
+- Step 04 PostgreSQL and Flyway foundation: enabled local datasource/JPA/Flyway configuration through environment variables, added the empty Flyway migration folder, and documented Maven Wrapper verification against the local PostgreSQL database.
 
 ## Last Commit
 
-- Last commit message: `step-02: add Flutter app skeleton`
-- Last commit hash: `1dc551c`
+- Last commit message: `step-03: add Spring Boot backend skeleton`
+- Last commit hash: `58506f9`
 
 ## Important Architecture Decisions
 
@@ -38,25 +39,26 @@
 - Project name changed to SmartKash.
 - GitHub remote `origin` is configured and push worked for previous workflow commits.
 - Java 21 is available locally.
+- Local PostgreSQL database `smartkash_db` is ready.
+- Local PostgreSQL owner/user `smartkash_admin` is ready.
 
 ## Pending Manual Setup
 
 - Confirm GitHub remote exists and is accessible.
-- Confirm PostgreSQL tools before database setup.
 - Configure Firebase test phone numbers later when Firebase setup begins.
 - Create real local environment file from `.env.example` later; do not commit secrets.
 
 ## Known Issues
 
 - No implementation code exists yet.
-- Step 03 creates a backend skeleton only; no business APIs, Firebase Auth logic, JWT issuing, wallet, transaction, ledger, database schema, Flyway migrations, admin pages, or feature logic exist yet.
+- Step 04 configures PostgreSQL/Flyway foundation only; no business APIs, Firebase Auth logic, JWT issuing, wallet, transaction, ledger, business schema, Flyway migration scripts, admin pages, or feature logic exist yet.
 - `flutter create` timed out in the sandbox, so the minimal Flutter skeleton was created manually and verified with Flutter tooling.
-- Global `mvn` is not installed, so Step 03 added Maven Wrapper and verified backend with `mvnw.cmd`.
-- The Step 03 commit hash will be reported after commit.
+- Global `mvn` is not available in the Codex session, so backend verification should use Maven Wrapper `.\mvnw.cmd`.
+- Flyway works against local PostgreSQL 17.10 after adding `flyway-database-postgresql`, but logs a warning that this Flyway version officially tested support up to PostgreSQL 16.
 
 ## Next Recommended Step
 
-- Step 04: configure PostgreSQL and Flyway foundation after reviewing the planning docs.
+- Step 05: configure Firebase Auth foundation with test phone numbers and fixed OTP planning-aware setup, without real SMS billing or business feature implementation.
 
 ## Standard Step Completion Format
 
