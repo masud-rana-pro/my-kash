@@ -9,11 +9,12 @@
 ## Completed Steps
 
 - Step 00 planning foundation: planning files, architecture rules, Bengali learning workflow, Git/GitHub workflow rules, and progress tracking file prepared.
+- Step 00b learning documentation rules: strengthened the Bengali learning file requirements before Step 01.
 
 ## Last Commit
 
-- Last commit message: none yet
-- Last commit hash: none yet
+- Last commit message: `step-00: add git workflow and progress tracking rules`
+- Last commit hash: `6cc83f0`
 
 ## Important Architecture Decisions
 
@@ -43,7 +44,7 @@
 ## Known Issues
 
 - No implementation code exists yet.
-- Current first commit has not been created at the time this progress file is written.
+- `docs/codex-progress.md` will be updated after each step; the current Step 00b commit hash will be reported after commit.
 
 ## Next Recommended Step
 
@@ -61,4 +62,3 @@ Every future step must end with:
 6. Push status
 7. Learning file created/updated
 8. Next recommended step
-

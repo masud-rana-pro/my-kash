@@ -121,6 +121,8 @@ At the end of every step, Codex must respond with:
 
 Every future implementation step must create or update one Bengali learning file inside the `learning/` folder.
 
+The learning file must teach the actual code, configuration, and structure changed in that step. It must not be only a short summary.
+
 Learning file naming format:
 
 ```text
@@ -144,13 +146,18 @@ Each learning file must be written in Bangla and include:
 3. Why this step is needed
 4. Which files were created or changed
 5. Important code snippets
-6. Bangla explanation of the important code, line-by-line or block-by-block
-7. How this step works in the SmartKash app flow
-8. Common mistakes and cautions
-9. How to test this step
-10. Short summary of what was learned
+6. Important config snippets, when config is created or changed
+7. Bangla explanation of important code/config, line-by-line or block-by-block
+8. Why each created/changed file, folder, class, config, or command exists
+9. How this step connects to the SmartKash app flow
+10. Common mistakes and cautions
+11. How to test or verify this step
+12. Git commands used in this step
+13. Short summary of what was learned
 
-Do not skip the learning file for any implementation step. Do not write only a short summary; include important code snippets and explain them clearly. Keep the explanation beginner-friendly but technically correct. Update the learning file in the same step where the code is implemented. Planning-only steps can also create learning notes if useful.
+Do not skip the learning file for any implementation step. Do not write only a short summary. Include important snippets and explain them clearly enough that a beginner can follow the actual implementation step by step. Keep the explanation beginner-friendly but technically correct. Update the learning file in the same step where the code/config/structure is implemented. Planning-only steps can also create or update learning notes when useful.
+
+When a step creates folders, the learning file must explain why each important folder exists. When a step creates classes, the learning file must explain each important class responsibility. When a step changes config, the learning file must explain the relevant config keys and why they are needed. When verification commands are run, include the commands and what their output means.
 
 ## Feature Rules
 
