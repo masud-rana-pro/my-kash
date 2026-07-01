@@ -12,11 +12,12 @@
 - Step 00b learning documentation rules: strengthened the Bengali learning file requirements before Step 01.
 - Step 01 project structure: created focused root folders for the future Flutter app, Spring Boot backend, helper scripts, and added a project `.gitignore`.
 - Step 02 Flutter app skeleton: created the Android-first Flutter shell under `apps/mobile/` with Riverpod, go_router, base theme/config, feature-first folders, and a placeholder home screen.
+- Step 03 Spring Boot backend skeleton: created the Maven/Java 21 Spring Boot backend shell under `services/backend/` with base dependencies, environment-based config placeholders, package markers, Maven Wrapper, and context-load test.
 
 ## Last Commit
 
-- Last commit message: `step-01: add project structure`
-- Last commit hash: `d259883`
+- Last commit message: `step-02: add Flutter app skeleton`
+- Last commit hash: `1dc551c`
 
 ## Important Architecture Decisions
 
@@ -36,24 +37,26 @@
 - Repository workspace created at `D:\github\my-kash`.
 - Project name changed to SmartKash.
 - GitHub remote `origin` is configured and push worked for previous workflow commits.
+- Java 21 is available locally.
 
 ## Pending Manual Setup
 
 - Confirm GitHub remote exists and is accessible.
-- Confirm local Java, Flutter, and PostgreSQL tools before implementation.
+- Confirm PostgreSQL tools before database setup.
 - Configure Firebase test phone numbers later when Firebase setup begins.
 - Create real local environment file from `.env.example` later; do not commit secrets.
 
 ## Known Issues
 
 - No implementation code exists yet.
-- Step 02 creates a Flutter skeleton only; no business features, Firebase packages, API calls, QR scan, wallet, or transaction logic exist yet.
+- Step 03 creates a backend skeleton only; no business APIs, Firebase Auth logic, JWT issuing, wallet, transaction, ledger, database schema, Flyway migrations, admin pages, or feature logic exist yet.
 - `flutter create` timed out in the sandbox, so the minimal Flutter skeleton was created manually and verified with Flutter tooling.
-- The Step 02 commit hash will be reported after commit.
+- Global `mvn` is not installed, so Step 03 added Maven Wrapper and verified backend with `mvnw.cmd`.
+- The Step 03 commit hash will be reported after commit.
 
 ## Next Recommended Step
 
-- Step 03: add Spring Boot backend skeleton under `services/backend/` after reviewing the planning docs.
+- Step 04: configure PostgreSQL and Flyway foundation after reviewing the planning docs.
 
 ## Standard Step Completion Format
 
