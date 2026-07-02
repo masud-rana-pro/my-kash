@@ -3,7 +3,8 @@
 ## System Overview
 
 ```text
-Flutter Android App
+Flutter Cross-Platform App
+  -> Android / iOS / Web / Windows / Linux / macOS
   -> Firebase Phone Auth test OTP
   -> Spring Boot REST API
   -> PostgreSQL
@@ -109,7 +110,21 @@ Use `enums` as the Java package name for enum classes. Avoid a package literally
 
 Use Riverpod for state management.
 
+SmartKash is now planned as a Flutter full cross-platform app. Supported Flutter platforms are Android, iOS, Web, Windows, Linux, and macOS. Android remains the primary local testing target on the current Windows machine, and Web can also be tested locally on Windows.
+
+Platform limitations:
+
+- Windows desktop builds require Visual Studio Desktop development with C++ workload.
+- iOS and macOS builds require macOS with Xcode.
+- Linux builds require a Linux environment.
+
 ```text
+android/
+ios/
+web/
+windows/
+linux/
+macos/
 lib/main.dart
 lib/app/
 lib/app/router/

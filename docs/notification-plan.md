@@ -6,6 +6,8 @@ Use Firebase Cloud Messaging for important transaction alerts only.
 
 Notification logic should live in a dedicated backend notification module, not inside controllers. The module should receive event-like service calls after successful transactions and should respect `FCM_ENABLED`.
 
+FCM platform support should be added carefully per Flutter platform. Android remains the primary local notification testing target; full platform-specific notification verification can happen later when each platform is configured.
+
 ## MVP Notification Events
 
 - Add Money approved.

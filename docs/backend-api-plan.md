@@ -1,5 +1,9 @@
 # SmartKash Backend API Plan
 
+## Client Platform Scope
+
+The Spring Boot backend serves the SmartKash Flutter full cross-platform app. Supported Flutter clients are Android, iOS, Web, Windows, Linux, and macOS. API contracts must stay platform-neutral so the same backend can support every Flutter target.
+
 ## Backend Technology Stack
 
 - Spring Boot

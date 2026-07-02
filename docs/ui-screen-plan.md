@@ -4,9 +4,17 @@
 
 Use Riverpod for state management and a feature-first folder structure.
 
+SmartKash is planned as a Flutter full cross-platform app for Android, iOS, Web, Windows, Linux, and macOS. Android remains the primary local testing target on Windows, and Web can also be tested locally on Windows. Windows desktop builds require Visual Studio Desktop development with C++ workload. iOS/macOS builds require macOS with Xcode. Linux builds require a Linux environment.
+
 Suggested structure:
 
 ```text
+android/
+ios/
+web/
+windows/
+linux/
+macos/
 lib/main.dart
 lib/app/
 lib/app/router/

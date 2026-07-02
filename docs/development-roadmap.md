@@ -33,7 +33,8 @@
 
 ## Phase 1: Project Setup
 
-- Create Flutter Android-first app.
+- Create shared Flutter full cross-platform app foundation.
+- Verify Android and Web locally on Windows.
 - Create Spring Boot backend.
 - Add Spring Web, Spring Security, Spring Data JPA, Hibernate, PostgreSQL Driver, Lombok, Validation, Firebase Admin SDK, JWT library, Flyway, Actuator, and OpenAPI/Swagger.
 - Set backend root package to `com.smartkash`.
@@ -43,8 +44,14 @@
 - Configure Firebase test project placeholders.
 - Create Bengali learning file for this step.
 
-## Phase 2: Auth And Security
+## Phase 2: Platform-Specific Polishing And Auth/Security
 
+- Polish platform-specific setup for Android, iOS, Web, Windows, Linux, and macOS as needed.
+- Keep Android as the primary local testing target on Windows.
+- Use Web as the second local verification target on Windows.
+- Remember Windows desktop builds require Visual Studio Desktop development with C++ workload.
+- Remember iOS/macOS builds require macOS with Xcode.
+- Remember Linux builds require a Linux environment.
 - Add Firebase token verification in backend.
 - Issue backend JWT.
 - Add mobile user model.
@@ -52,8 +59,9 @@
 - Add PIN verification with rate limiting and temporary transaction block.
 - Create Bengali learning file for this step.
 
-## Phase 3: Database Foundation
+## Phase 3: Production Packaging And Database Foundation
 
+- Add production packaging steps for each platform only when needed.
 - Add users, wallets, ledger entries, transactions, idempotency keys, and audit logs.
 - Add simple roles: `CUSTOMER`, `MERCHANT`, `ADMIN`.
 - Create Bengali learning file for this step.

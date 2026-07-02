@@ -3,6 +3,7 @@
 ## Authentication
 
 - Flutter uses Firebase Phone Auth test phone numbers and fixed OTP codes in MVP.
+- Flutter is a full cross-platform app, but Firebase Phone Auth local verification should start with Android and Web on the Windows development machine.
 - Real SMS OTP is not used to avoid billing requirements.
 - Flutter sends Firebase ID token to Spring Boot.
 - Spring Boot verifies the Firebase token.

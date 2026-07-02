@@ -1,5 +1,9 @@
 # SmartKash Feature Specification
 
+## Platform Scope
+
+SmartKash is a Flutter full cross-platform MVP for Android, iOS, Web, Windows, Linux, and macOS. The same core user features should be planned for all supported Flutter platforms. Android remains the primary local testing target on Windows, and Web can also be verified locally on Windows.
+
 ## Auth
 
 - User signs in with mobile number using Firebase Phone Auth test OTP.

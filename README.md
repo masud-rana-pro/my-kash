@@ -1,8 +1,8 @@
 # SmartKash
 
-SmartKash is a zero-budget learning MVP for a bKash-like wallet app. The project will be built step by step with a Flutter Android-first user app, a Spring Boot backend, PostgreSQL for business data, Firebase Phone Auth test OTP, and Firebase Cloud Messaging for important transaction alerts.
+SmartKash is a zero-budget learning MVP for a bKash-like wallet app. The project will be built step by step with a Flutter full cross-platform app, a Spring Boot backend, PostgreSQL for business data, Firebase Phone Auth test OTP, and Firebase Cloud Messaging for important transaction alerts.
 
-This repository currently contains planning files only. Do not add Flutter app code, Spring Boot code, database migrations, schemas, or feature implementation until the planning files are accepted and the next implementation step is requested.
+This repository now contains the shared Flutter cross-platform app foundation, Spring Boot backend foundation, PostgreSQL/Flyway setup, Firebase foundation, backend JWT foundation, planning docs, and Bangla learning notes. Future work should still follow the planning-first step workflow and avoid adding unrelated features in the same step.
 
 ## MVP Features
 
@@ -19,7 +19,13 @@ This repository currently contains planning files only. Do not add Flutter app c
 
 ## Tech Scope
 
-- Flutter Android-first app
+- Flutter full cross-platform app
+- Supported Flutter platforms: Android, iOS, Web, Windows, Linux, and macOS
+- Android remains the primary local testing target on Windows
+- Web can also be tested locally on Windows
+- Windows desktop builds require Visual Studio Desktop development with C++ workload
+- iOS/macOS builds require macOS with Xcode
+- Linux builds require a Linux environment
 - Riverpod state management
 - Spring Boot REST API and minimal web admin
 - Spring Web, Spring Security, Spring Data JPA, Hibernate, Bean Validation

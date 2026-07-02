@@ -2,7 +2,7 @@
 
 ## 1. Step title
 
-Step 02: SmartKash Flutter Android-first app skeleton তৈরি।
+Step 02: SmartKash Flutter app skeleton তৈরি। এই step-এ শুরুতে Android-focused skeleton ছিল; Step 06b-এ project full cross-platform Flutter structure-এ normalize করা হয়েছে।
 
 ## 2. কী implement করা হয়েছে
 
@@ -262,7 +262,7 @@ Flutter/Dart package name set করে। Dart package name lowercase হতে
 --platforms=android
 ```
 
-শুধু Android platform skeleton generate করতে বলা হয়, কারণ SmartKash এখন Android-first।
+এই step-এ শুধু Android platform skeleton generate করা হয়েছিল। Step 06b থেকে SmartKash Android, iOS, Web, Windows, Linux, এবং macOS support করার জন্য cross-platform structure পেয়েছে।
 
 ```powershell
 .

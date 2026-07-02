@@ -5,10 +5,14 @@
 - Confirm all requested planning files exist.
 - Confirm `learning/README.md` exists.
 - Confirm docs mention zero-budget learning MVP.
-- Confirm no implementation code exists yet.
 - Confirm backend dependency plan includes Spring Web, Security, Data JPA, Hibernate, PostgreSQL Driver, Lombok, Validation, Firebase Admin SDK, JWT, Flyway, Actuator, and OpenAPI/Swagger.
 - Confirm backend package plan uses `com.smartkash` with feature modules and layered internals.
 - Confirm Flutter plan uses Riverpod and feature-first folders.
+- Confirm Flutter platform folders exist for Android, iOS, Web, Windows, Linux, and macOS.
+- Confirm Android and Web can be verified locally on Windows.
+- Confirm Windows desktop limitation is documented: Visual Studio Desktop development with C++ workload.
+- Confirm iOS/macOS limitation is documented: macOS with Xcode.
+- Confirm Linux limitation is documented: Linux environment.
 
 ## Auth And Security
 

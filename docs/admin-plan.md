@@ -6,6 +6,8 @@ The MVP admin panel is minimal. It supports operational review and status action
 
 Do not add full dashboards, analytics, reports, advanced settings, or complex role management in MVP Phase 1.
 
+Admin functionality remains backend-owned through Spring Boot routes/APIs. The Flutter cross-platform direction does not add admin business features in this step.
+
 ## Access Control
 
 - Admin web routes and admin APIs require authenticated `ADMIN` role.

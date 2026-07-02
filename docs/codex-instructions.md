@@ -103,6 +103,13 @@ At the end of every step, Codex must respond with:
 
 ## Flutter Architecture Rules
 
+- SmartKash is a Flutter full cross-platform app.
+- Supported Flutter platforms are Android, iOS, Web, Windows, Linux, and macOS.
+- Android remains the primary local testing target on Windows.
+- Web can also be tested locally on Windows.
+- Windows desktop builds require Visual Studio Desktop development with C++ workload.
+- iOS/macOS builds require macOS with Xcode.
+- Linux builds require a Linux environment.
 - Use Riverpod for state management.
 - Use feature-first folders under `lib/features`.
 - Keep UI widgets clean.

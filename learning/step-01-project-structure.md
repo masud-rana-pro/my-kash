@@ -10,7 +10,7 @@ Step 01: SmartKash root project structure তৈরি।
 
 এই step-এ তৈরি করা হয়েছে:
 
-- `apps/mobile/` - future Flutter Android-first app রাখার জায়গা
+- `apps/mobile/` - future Flutter app রাখার জায়গা; Step 06b থেকে এটি full cross-platform Flutter app হিসেবে normalize করা হয়েছে
 - `services/backend/` - future Spring Boot backend রাখার জায়গা
 - `scripts/` - helper scripts রাখার জায়গা
 - `.gitignore` - secrets, build output, IDE files, logs, Flutter/Java generated files ignore করার rule
@@ -145,7 +145,7 @@ services/backend/.mvn/wrapper/maven-wrapper.jar
 apps/mobile/
 ```
 
-এই folder future Flutter Android-first mobile app-এর জন্য। Flutter app generate করলে `lib/`, `android/`, `pubspec.yaml` ইত্যাদি এই folder-এর ভিতরে থাকবে।
+এই folder future Flutter app-এর জন্য। Step 06b-এর পর এটি full cross-platform Flutter app structure ধরে রাখে: `lib/`, `android/`, `ios/`, `web/`, `windows/`, `linux/`, `macos/`, `pubspec.yaml` ইত্যাদি এই folder-এর ভিতরে থাকবে।
 
 ```text
 services/backend/
@@ -219,7 +219,7 @@ apps/mobile/ios/Pods/
 apps/mobile/ios/.symlinks/
 ```
 
-iOS dependency/generated files ignore করে। যদিও app Android-first, future iOS support রাখলে এগুলো useful হবে।
+iOS dependency/generated files ignore করে। Step 06b-এর পর iOS official planned platform, তবে build করতে macOS/Xcode দরকার।
 
 ### Java/Maven section explanation
 
@@ -311,4 +311,3 @@ git log -1 --oneline
 ## 12. What I learned from this step
 
 এই step থেকে শিখলাম যে বড় project শুরু করার আগে root structure ঠিক করা খুব গুরুত্বপূর্ণ। Flutter app, Spring Boot backend, scripts, docs, এবং learning notes আলাদা রাখলে project maintain করা সহজ হয়। `.gitignore` secrets ও generated files protect করে। `.gitkeep` empty folder Git-এ রাখতে সাহায্য করে। SmartKash-এর future implementation এখন clean foundation-এর উপর করা যাবে।
-

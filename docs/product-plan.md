@@ -12,7 +12,13 @@ SmartKash is a bKash-like zero-budget learning MVP. The goal is to learn how to 
 
 ## MVP Scope
 
-- Flutter Android-first customer app.
+- Flutter full cross-platform customer app.
+- Supported Flutter platforms: Android, iOS, Web, Windows, Linux, and macOS.
+- Android remains the primary local testing target on the current Windows machine.
+- Web can also be tested locally on Windows.
+- Windows desktop builds require Visual Studio Desktop development with C++ workload.
+- iOS/macOS builds require macOS with Xcode.
+- Linux builds require a Linux environment.
 - Riverpod-based Flutter state management.
 - Feature-first Flutter folder structure.
 - Spring Boot backend with REST APIs.

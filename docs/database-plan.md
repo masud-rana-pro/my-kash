@@ -1,5 +1,9 @@
 # SmartKash Database Plan
 
+## Client Platform Scope
+
+PostgreSQL remains the single source of truth for SmartKash business data regardless of Flutter platform. Android, iOS, Web, Windows, Linux, and macOS clients must all access business data through the Spring Boot API, never directly through the database.
+
 ## Database
 
 Use PostgreSQL for the main business database.
