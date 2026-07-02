@@ -7,7 +7,9 @@
 - Real SMS OTP is not used to avoid billing requirements.
 - Flutter sends Firebase ID token to Spring Boot.
 - Spring Boot verifies the Firebase token.
+- Spring Boot creates or finds the minimal persisted user record by Firebase UID and verified Firebase phone number.
 - Spring Boot issues its own backend JWT for API access.
+- Backend JWT role comes from the persisted user record.
 
 ## Authorization
 

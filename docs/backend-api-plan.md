@@ -115,7 +115,9 @@ com.smartkash.wallet.enums
 ## User APIs
 
 - `GET /api/users/me`: read the authenticated user's persisted user/profile foundation record.
-- The first user/profile foundation step does not auto-create users during Firebase login. Linking Firebase login to persisted users is handled in a later auth/user step.
+- Firebase login now creates or finds the minimal persisted `users` record by Firebase UID, using the Firebase phone number as the unique SmartKash mobile number.
+- New Firebase-linked users start as `CUSTOMER` and `ACTIVE` until later profile, PIN, merchant, or admin management steps update them.
+- Firebase login does not create wallets, PINs, transactions, ledgers, or money-changing records.
 
 ## Wallet APIs
 
