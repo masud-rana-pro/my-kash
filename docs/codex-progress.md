@@ -20,11 +20,12 @@
 - Step 06c manual verification workflow: updated Codex workflow rules so heavy Flutter/backend build and test commands are not run automatically unless explicitly requested; Codex now commits/pushes focused changes and provides manual verification commands for the user.
 - Step 07 user/profile database foundation: added Flyway migration for minimal `users` and `user_profiles` tables, JPA entities, repositories, role/status enums, response DTOs, mapper/service/controller foundation, and read-only `GET /api/users/me` without wallet, PIN, ledger, transaction, or money-changing features.
 - Step 08 Firebase login user persistence: linked `POST /api/auth/firebase-login` to the persisted `users` table so valid Firebase tokens create or find a minimal user record and issue backend JWTs with the persisted role, without wallet, PIN, profile editing, or money-changing features.
+- Step 09 user profile completion foundation: added authenticated `PUT /api/users/me/profile` to create or update minimal profile fields using the JWT/Firebase UID, without accepting user IDs or adding wallet, PIN, or money-changing features.
 
 ## Last Commit
 
-- Last commit message: `step-08: link Firebase login to users`
-- Last commit hash: reported in the Step 08 completion summary after commit finalization.
+- Last commit message: `step-09: add user profile completion foundation`
+- Last commit hash: reported in the Step 09 completion summary after commit finalization.
 
 ## Important Architecture Decisions
 
@@ -50,6 +51,7 @@
 - Minimal persisted role/status values use `UserRole` and `UserStatus` enums.
 - `GET /api/users/me` is read-only and returns the current persisted user/profile record when it exists.
 - Firebase login creates or finds the minimal persisted user record, but does not create wallet, PIN, ledger, transaction, or money-changing records.
+- `PUT /api/users/me/profile` creates or updates only the authenticated user's minimal profile fields and resolves ownership from JWT/Firebase UID.
 - Send Money must support both registered mobile number and QR receiver selection.
 - Wallet balance is stored for fast reads, backed by immutable ledger entries.
 - Money-changing operations require transactions, safe wallet locking, idempotency keys, and audit logs.
@@ -86,6 +88,7 @@
 - Step 06b changes direction and platform structure only; it does not add login/register UI, wallet, ledger, transaction, payment, QR, recharge, savings, loan, admin business features, or database schema.
 - Step 07 creates only user/profile identity schema and read-only user foundation; no wallet, ledger, PIN, automatic user creation during login, admin user management, or money-changing API exists yet.
 - Step 08 links Firebase login to persisted users only; no wallet creation, PIN setup, profile editing, admin management, or money-changing API exists yet.
+- Step 09 adds minimal profile completion only; no wallet creation, PIN setup, admin profile management, KYC/NID fields, or money-changing API exists yet.
 - `flutter create` timed out in the sandbox, so the minimal Flutter skeleton was created manually and verified with Flutter tooling.
 - Global `mvn` is not available in the Codex session, so backend verification should use Maven Wrapper `.\mvnw.cmd`.
 - Flyway works against local PostgreSQL 17.10 after adding `flyway-database-postgresql`, but logs a warning that this Flyway version officially tested support up to PostgreSQL 16.
@@ -94,7 +97,7 @@
 
 ## Next Recommended Step
 
-- Ask the user to run Step 08 manual verification commands. After verification passes, the next recommended step is adding a focused profile completion/read update step or PIN setup foundation, still without wallet or money-changing features.
+- Ask the user to run Step 09 manual verification commands. After verification passes, the next recommended step is PIN setup foundation with hashed PIN storage, still without wallet or money-changing features.
 
 ## Standard Step Completion Format
 
