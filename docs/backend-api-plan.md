@@ -147,6 +147,7 @@ com.smartkash.wallet.enums
 
 - `POST /api/payments/merchant`: pay merchant by merchant number/account number.
 - Merchant payment debits customer wallet and credits merchant wallet.
+- Step 18 adds merchant profile foundation with `POST /api/merchants/me` and `GET /api/merchants/me`. Merchant payment is still future scope and no wallet debit/credit is implemented yet.
 
 ## Transaction APIs
 

@@ -144,6 +144,8 @@ Step 17 creates the Add Money request foundation only. Customer requests start a
 
 A merchant is also a user account with `role = MERCHANT`. Each merchant has a wallet like a normal user. The `merchants` table stores only business-specific information.
 
+Step 18 creates merchant profile foundation only. Creating a merchant profile changes the current user role to `MERCHANT` and stores business-specific data. It does not implement merchant payment, wallet debit/credit, ledger entries, transaction records, or admin merchant management.
+
 Relationship:
 
 ```text
