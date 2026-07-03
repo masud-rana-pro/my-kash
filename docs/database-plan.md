@@ -231,3 +231,5 @@ Step 14 creates the idempotency key database foundation only. Future money-chang
 - `target_id`
 - `details`
 - `created_at`
+
+Step 16 creates the admin audit log database foundation only. Future admin approval/rejection services must write audit records when they change Add Money, Loan, User, or Merchant state.

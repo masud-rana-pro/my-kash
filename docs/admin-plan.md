@@ -13,6 +13,7 @@ Admin functionality remains backend-owned through Spring Boot routes/APIs. The F
 - Admin web routes and admin APIs require authenticated `ADMIN` role.
 - Customers and merchants must not access admin pages or APIs.
 - Admin actions should be written to `admin_audit_logs`.
+- Step 16 creates the `admin_audit_logs` persistence foundation and internal service helper only. Admin audit list APIs and approval/rejection flow integration are future scope.
 - Admin controllers must stay thin and delegate approval/rejection logic to services.
 - Admin APIs must use request/response DTOs and must not expose entities directly.
 

@@ -27,11 +27,12 @@
 - Step 13 ledger and transaction database foundation: added `transactions` and `ledger_entries` tables, enums, entities, and repositories for immutable ledger/user-facing transaction records without APIs, wallet balance changes, or money movement.
 - Step 14 idempotency key database foundation: added `idempotency_keys` table, enums, entity, repository, and internal service helper foundation without controllers, public APIs, wallet balance mutation, or money-changing flows.
 - Step 15 wallet creation lifecycle: linked Firebase login to backend wallet provisioning so authenticated users get one zero-balance `BDT` wallet when missing, without ledger entries, transaction records, wallet balance mutation APIs, or money-changing flows.
+- Step 16 admin audit log foundation: added `admin_audit_logs` table, audit action/target enums, entity, repository, and internal service helper foundation without admin APIs or approval/rejection flow integration.
 
 ## Last Commit
 
-- Last commit message: `step-15: add wallet creation lifecycle`
-- Last commit hash: reported in the Step 15 completion summary after commit finalization.
+- Last commit message: `step-16: add admin audit log foundation`
+- Last commit hash: reported in the Step 16 completion summary after commit finalization.
 
 ## Important Architecture Decisions
 
@@ -68,6 +69,7 @@
 - Step 13 ledger/transaction foundation adds persistence only; services must later create transaction records and immutable ledger entries together in one database transaction when money movement is implemented.
 - Step 14 idempotency foundation stores one key per user plus request hash, operation type, status, optional saved response body, and expiry time so future money-changing APIs can safely handle retries.
 - Step 15 wallet lifecycle creates only the initial wallet record with zero balance and `ACTIVE` status; future balance changes still require ledger entries and transaction records.
+- Step 16 admin audit foundation records future admin state changes with action, target type, target id, details, and admin user reference.
 - Money-changing operations require transactions, safe wallet locking, idempotency keys, and audit logs.
 - Codex uses a manual verification workflow by default: do focused changes, update learning/progress docs, run lightweight checks only, commit/push, and provide manual verification commands.
 
@@ -109,6 +111,7 @@
 - Step 13 adds ledger and transaction persistence only; no transaction history API, wallet balance mutation, idempotency table, admin management, or money-changing API exists yet.
 - Step 14 adds idempotency persistence and internal helper only; it is not wired into Add Money, Send Money, Payment, Recharge, Savings, Loan, wallet mutation, or admin approval flows yet.
 - Step 15 creates initial wallet records during login only; it does not implement wallet top-up, send money, payment, recharge, savings, loan, transaction history, or admin flows.
+- Step 16 adds admin audit persistence only; it does not implement admin list APIs, approval/rejection APIs, or feature flow integration yet.
 - `flutter create` timed out in the sandbox, so the minimal Flutter skeleton was created manually and verified with Flutter tooling.
 - Global `mvn` is not available in the Codex session, so backend verification should use Maven Wrapper `.\mvnw.cmd`.
 - Flyway works against local PostgreSQL 17.10 after adding `flyway-database-postgresql`, but logs a warning that this Flyway version officially tested support up to PostgreSQL 16.
@@ -117,7 +120,7 @@
 
 ## Next Recommended Step
 
-- Ask the user to run Step 15 manual verification commands. After verification passes, the next recommended step is audit log foundation, still without money-changing APIs.
+- Ask the user to run Step 16 manual verification commands. After verification passes, the next recommended step is Add Money request foundation or merchant database foundation, still without wallet credit/debit money movement.
 
 ## Standard Step Completion Format
 
