@@ -31,6 +31,7 @@ Feature modules:
 - `com.smartkash.wallet`
 - `com.smartkash.ledger`
 - `com.smartkash.transaction`
+- `com.smartkash.idempotency`
 - `com.smartkash.addmoney`
 - `com.smartkash.sendmoney`
 - `com.smartkash.payment`
@@ -185,6 +186,8 @@ All admin routes require authenticated `ADMIN` role.
 ## Idempotency Rule
 
 All money-changing APIs must accept a unique `clientRequestId` or `idempotencyKey`. If the same key is submitted again for the same request type and user, the backend must not create duplicate ledger entries, transaction records, or wallet changes.
+
+Step 14 adds the `idempotency_keys` persistence foundation and internal service helper only. It does not expose idempotency through a public API and does not wire idempotency into money-changing flows yet.
 
 Applies to:
 

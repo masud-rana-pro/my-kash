@@ -52,6 +52,8 @@ Every money-changing request must validate:
 
 Every money-changing operation must run in a database transaction and use optimistic locking or another safe locking strategy for wallet balance updates.
 
+Idempotency keys must be stored per authenticated user. The backend should store a request hash instead of raw sensitive request bodies, so retries can be compared safely without exposing PINs or private payload data.
+
 ## QR Send Money Security
 
 QR Send Money must validate:

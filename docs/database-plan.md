@@ -209,12 +209,18 @@ Use `mobile_recharges`, not `recharge_requests`, because MVP recharge is demo su
 
 - `id`
 - `user_id`
-- `key`
-- `request_type`
-- `response_reference`
+- `idempotency_key`
+- `request_hash`
+- `operation_type`
+- `status`: `PROCESSING`, `COMPLETED`, `FAILED`
+- `response_body`
 - `created_at`
+- `updated_at`
+- `expires_at`
 
 This table prevents duplicate money-changing requests.
+
+Step 14 creates the idempotency key database foundation only. Future money-changing services must reserve an idempotency key before processing, compare the request hash on retry, and return the saved result instead of creating duplicate wallet, ledger, or transaction records.
 
 ### admin_audit_logs
 

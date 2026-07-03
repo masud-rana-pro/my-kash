@@ -42,6 +42,7 @@ Feature modules:
 - `com.smartkash.wallet`
 - `com.smartkash.ledger`
 - `com.smartkash.transaction`
+- `com.smartkash.idempotency`
 - `com.smartkash.addmoney`
 - `com.smartkash.sendmoney`
 - `com.smartkash.payment`
