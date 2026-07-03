@@ -148,6 +148,7 @@ com.smartkash.wallet.enums
 
 - `GET /api/transactions`: list user transactions with date/type/status filters.
 - `GET /api/transactions/{id}`: get receipt/details for one transaction.
+- Step 13 creates transaction and ledger persistence foundation only. It does not expose transaction APIs yet and does not create money movement records.
 
 ## Savings APIs
 

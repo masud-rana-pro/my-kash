@@ -98,6 +98,8 @@ Ledger entries are immutable. They must never be updated or deleted. Corrections
 
 Wallet-to-wallet transfers must create linked debit and credit ledger entries under the same transaction reference.
 
+Step 13 creates only the ledger and transaction database foundation. No application service creates ledger entries or transaction records yet. Future money-changing services must create user-facing transaction records and immutable ledger entries together inside one database transaction.
+
 ### transactions
 
 - `id`
@@ -111,6 +113,8 @@ Wallet-to-wallet transfers must create linked debit and credit ledger entries un
 - `created_at`
 
 Transactions are user-facing records for statements and receipts.
+
+Step 13 transaction records are schema/entity/repository foundation only. Transaction history APIs and money-changing transaction creation are future scope.
 
 ### add_money_requests
 
