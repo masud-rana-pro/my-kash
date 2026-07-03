@@ -52,6 +52,7 @@ Admin functionality remains backend-owned through Spring Boot routes/APIs. The F
 - Create immutable ledger entry.
 - Create user-facing transaction record.
 - Send important FCM alert when possible.
+- Step 17 creates customer pending Add Money requests only. Admin approval/rejection APIs and wallet credit are future scope.
 
 ### Add Money Rejection
 

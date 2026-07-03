@@ -56,6 +56,8 @@ Every money-changing operation must run in a database transaction and use optimi
 
 Idempotency keys must be stored per authenticated user. The backend should store a request hash instead of raw sensitive request bodies, so retries can be compared safely without exposing PINs or private payload data.
 
+Step 17 Add Money request creation is not a wallet balance change. It requires authentication and stores a pending request only; later admin approval will require idempotency, audit logging, ledger entries, transaction records, and wallet credit rules.
+
 ## QR Send Money Security
 
 QR Send Money must validate:

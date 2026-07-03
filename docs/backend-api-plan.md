@@ -135,6 +135,7 @@ com.smartkash.wallet.enums
 
 - `POST /api/add-money/requests`: create Add Money request.
 - `GET /api/add-money/requests`: list current user's Add Money requests.
+- Step 17 implements customer Add Money request create/list foundation only. New requests are saved as `PENDING`; no admin approval, wallet credit, ledger entry, transaction record, idempotency record, or FCM alert is created yet.
 
 ## Send Money APIs
 

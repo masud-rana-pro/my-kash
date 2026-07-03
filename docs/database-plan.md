@@ -125,7 +125,11 @@ Step 13 transaction records are schema/entity/repository foundation only. Transa
 - `status`: `PENDING`, `APPROVED`, `REJECTED`
 - `approved_by`
 - `approved_at`
+- `note`
 - `created_at`
+- `updated_at`
+
+Step 17 creates the Add Money request foundation only. Customer requests start as `PENDING`. Approval, rejection, wallet credit, ledger entry creation, transaction record creation, idempotency usage, FCM alerts, and audit logging are future scope.
 
 ### merchants
 
