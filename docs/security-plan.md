@@ -73,6 +73,8 @@ The backend must not trust QR data without resolving it against registered backe
 
 Step 26 adds the receiver validation foundation. The MVP QR payload format is `SMARTKASH_USER:<mobile-number>`. The backend resolves that mobile number against the registered `users` table, rejects missing/invalid/self receivers, and requires the receiver wallet to be active before a future Send Money transfer can continue. Step 26 does not move money, verify PIN, or create idempotency/ledger/transaction records yet.
 
+Step 27 applies the full money-changing security rule to Send Money. `POST /api/send-money` requires backend JWT, PIN confirmation, idempotency key, registered active receiver, active sender/receiver wallets, sufficient sender balance, safe wallet locking, linked immutable ledger entries, and user-facing transaction records. Repeating the same idempotency key with the same request must not debit the sender twice.
+
 ## Secret Management
 
 Do not hardcode:

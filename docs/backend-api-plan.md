@@ -144,6 +144,7 @@ com.smartkash.wallet.enums
 - Required validation: authenticated user, PIN, receiver, account status, sender balance, idempotency key.
 - Successful wallet-to-wallet transfer must create linked debit and credit ledger entries under one transaction reference.
 - Step 26 implements receiver validation only. It accepts either `mobileNumber` or QR payload format `SMARTKASH_USER:<mobile-number>`, resolves the receiver from registered backend users, checks sender/receiver account status, prevents self-transfer, and checks receiver wallet status. It does not debit wallets, credit wallets, verify PIN, create transaction records, create ledger entries, or use idempotency yet.
+- Step 27 implements `POST /api/send-money` wallet-to-wallet transfer. It accepts either `mobileNumber` or QR payload, validates authenticated active sender, receiver, PIN, idempotency key, active sender/receiver wallets, and sufficient sender balance. A successful transfer debits sender wallet, credits receiver wallet, creates sender `SEND_MONEY` and receiver `RECEIVE_MONEY` transaction records, creates linked `DEBIT` and `CREDIT` ledger entries under the sender transfer reference, and completes the idempotency key.
 
 ## Payment APIs
 
