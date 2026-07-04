@@ -167,6 +167,7 @@ com.smartkash.wallet.enums
 - `POST /api/savings/goals/{id}/deposit`: deposit from wallet to savings goal.
 - Step 21 implements savings goal create/list foundation only. New goals start as `ACTIVE` with `currentAmount = 0.00`; no wallet debit, savings deposit, ledger entry, transaction record, idempotency record, PIN confirmation, or FCM alert is created yet.
 - Savings deposit remains future scope and must follow full money-changing API rules.
+- Step 29 implements `POST /api/savings/goals/{id}/deposit`. It validates authenticated active user, active savings goal ownership, PIN, idempotency key, active wallet, and sufficient wallet balance. A successful deposit debits the wallet, increases the goal current amount, marks the goal `COMPLETED` when the target amount is reached, creates a `SAVINGS_DEPOSIT` transaction record, creates an immutable debit ledger entry, and completes the idempotency key.
 
 ## Loan APIs
 

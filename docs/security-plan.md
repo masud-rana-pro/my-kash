@@ -81,6 +81,12 @@ Merchant Payment must validate authenticated active customer, active merchant pr
 
 Step 28 applies the full money-changing security rule to `POST /api/payments/merchant`. A successful payment creates customer and merchant transaction records plus linked immutable ledger entries. Repeating the same idempotency key with the same request must not debit the customer twice.
 
+## Savings Deposit Security
+
+Savings Deposit must validate authenticated active user, savings goal ownership, active goal status, active wallet status, wallet balance, PIN confirmation, and idempotency key.
+
+Step 29 applies the full money-changing security rule to `POST /api/savings/goals/{id}/deposit`. A successful deposit debits the user's wallet, increases the savings goal current amount, creates a `SAVINGS_DEPOSIT` transaction record, creates an immutable debit ledger entry, and completes the idempotency key. Repeating the same idempotency key with the same request must not debit the wallet twice.
+
 ## Secret Management
 
 Do not hardcode:
