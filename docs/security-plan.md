@@ -87,6 +87,10 @@ Savings Deposit must validate authenticated active user, savings goal ownership,
 
 Step 29 applies the full money-changing security rule to `POST /api/savings/goals/{id}/deposit`. A successful deposit debits the user's wallet, increases the savings goal current amount, creates a `SAVINGS_DEPOSIT` transaction record, creates an immutable debit ledger entry, and completes the idempotency key. Repeating the same idempotency key with the same request must not debit the wallet twice.
 
+## Mobile Recharge Security
+
+Mobile Recharge in the MVP is still a demo success flow, but Step 30 makes it wallet-debit protected. `POST /api/recharge` must validate authenticated active user, PIN confirmation, idempotency key, active wallet, and sufficient wallet balance. A successful demo recharge debits the wallet, creates a `MOBILE_RECHARGE` transaction record, creates an immutable debit ledger entry, saves the recharge record, and completes the idempotency key. No real recharge provider is integrated.
+
 ## Secret Management
 
 Do not hardcode:

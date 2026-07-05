@@ -181,6 +181,7 @@ com.smartkash.wallet.enums
 - `GET /api/recharge`: list current user's mobile recharge records.
 - Step 20 implements demo mobile recharge create/list foundation only. New demo records are saved as `SUCCESS` for learning/demo flow, but no wallet debit, real provider call, ledger entry, transaction record, idempotency record, PIN confirmation, or FCM alert is created yet.
 - A later real wallet-debit recharge step must require authenticated user, PIN confirmation, idempotency key, active wallet, sufficient balance, transaction record, immutable ledger entry, and provider/demo-provider status handling.
+- Step 30 implements wallet-debit demo Mobile Recharge. `POST /api/recharge` now requires PIN and idempotency key, debits the authenticated user's wallet, creates a `MOBILE_RECHARGE` transaction record, creates an immutable debit ledger entry, saves the demo recharge record as `SUCCESS`, and completes the idempotency key. It still does not call any real recharge provider.
 
 ## Minimal Admin APIs
 

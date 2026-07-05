@@ -41,11 +41,12 @@
 - Step 27 Send Money transfer flow: added authenticated money-changing `POST /api/send-money` with mobile/QR receiver selection, PIN confirmation, idempotency, locked sender/receiver wallets, balance debit/credit, sender/receiver transaction records, and linked immutable ledger entries.
 - Step 28 Merchant Payment transfer flow: added authenticated money-changing `POST /api/payments/merchant` with merchant number lookup, PIN confirmation, idempotency, locked customer/merchant wallets, customer debit, merchant credit, merchant payment transaction records, linked immutable ledger entries, and admin payments read support.
 - Step 29 Savings Deposit transfer flow: added authenticated money-changing `POST /api/savings/goals/{id}/deposit` with PIN confirmation, idempotency, locked savings goal and wallet, wallet debit, goal current amount update, auto-complete when target is reached, `SAVINGS_DEPOSIT` transaction record, and immutable debit ledger entry.
+- Step 30 Mobile Recharge wallet debit flow: updated demo `POST /api/recharge` to require PIN and idempotency, lock and debit the user wallet, create a `MOBILE_RECHARGE` transaction record, create an immutable debit ledger entry, attach the transaction reference to the recharge record, and keep the zero-budget no-provider demo success rule.
 
 ## Last Commit
 
-- Last commit message: `step-29: add savings deposit transfer flow`
-- Last commit hash: pending until Step 29 commit finalization.
+- Last commit message: `step-30: add mobile recharge wallet debit flow`
+- Last commit hash: pending until Step 30 commit finalization.
 
 ## Important Architecture Decisions
 
@@ -96,6 +97,7 @@
 - Step 27 Send Money transfer is the first customer wallet-to-wallet money-changing flow. It uses PIN verification, idempotency, pessimistic wallet locking, balance debit/credit, sender `SEND_MONEY` transaction, receiver `RECEIVE_MONEY` transaction, and linked debit/credit ledger entries.
 - Step 28 Merchant Payment uses the same money-changing safety model as Send Money, but resolves the receiving account through `merchants.merchant_number` and credits the merchant user's wallet.
 - Step 29 Savings Deposit uses the money-changing safety model for a one-sided wallet debit into a savings goal balance. The wallet ledger records the debit, while the savings goal tracks the saved amount.
+- Step 30 Mobile Recharge uses the money-changing safety model for a demo provider-less wallet debit. The recharge record is marked `SUCCESS` locally and references the wallet debit transaction.
 - Money-changing operations require transactions, safe wallet locking, idempotency keys, and audit logs.
 - Codex uses a manual verification workflow by default: do focused changes, update learning/progress docs, run lightweight checks only, commit/push, and provide manual verification commands.
 
@@ -151,6 +153,7 @@
 - Step 27 implements backend Send Money transfer only; it does not build Flutter UI, QR scanner UI, FCM alerts, merchant payment, savings deposit, mobile recharge wallet debit, or admin screens.
 - Step 28 implements backend Merchant Payment transfer only; it does not build Flutter UI, QR scanner UI, FCM alerts, merchant settlement, refunds, chargebacks, or provider/payment gateway integration.
 - Step 29 implements backend Savings Deposit only; it does not build Flutter UI, FCM alerts, savings withdrawal, goal cancellation flow, interest/profit calculation, or separate savings wallet accounting.
+- Step 30 implements backend demo Mobile Recharge wallet debit only; it does not integrate a real recharge provider, billing API, refund flow, FCM alerts, or Flutter UI.
 - `flutter create` timed out in the sandbox, so the minimal Flutter skeleton was created manually and verified with Flutter tooling.
 - Global `mvn` is not available in the Codex session, so backend verification should use Maven Wrapper `.\mvnw.cmd`.
 - Flyway works against local PostgreSQL 17.10 after adding `flyway-database-postgresql`, but logs a warning that this Flyway version officially tested support up to PostgreSQL 16.
@@ -159,7 +162,7 @@
 
 ## Next Recommended Step
 
-- Ask the user to run Step 29 manual verification commands. After verification passes, the next recommended step is Mobile Recharge wallet debit flow.
+- Ask the user to run Step 30 manual verification commands. After verification passes, the next recommended step is FCM transaction alert foundation or backend API polish/error-response review before frontend integration.
 
 ## Standard Step Completion Format
 
