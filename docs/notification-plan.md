@@ -16,6 +16,16 @@ Step 31 backend foundation:
 - `FCM_ENABLED=false` or missing Firebase Admin credentials makes notification sending skip safely.
 - Step 31 does not send alerts from every transaction service yet; wiring alerts into each successful money flow can be done in a focused later step.
 
+Step 32 transaction alert wiring:
+
+- Add Money approval/rejection calls `TransactionAlertService`.
+- Loan approval/rejection calls `TransactionAlertService`.
+- Send Money sends alerts to sender and receiver after successful transfer.
+- Merchant Payment sends alerts to customer and merchant after successful payment.
+- Savings Deposit sends an alert after successful deposit.
+- Mobile Recharge sends an alert after successful demo recharge.
+- If `FCM_ENABLED=false` or Firebase Admin is not configured, the service logs and skips safely.
+
 ## MVP Notification Events
 
 - Add Money approved.
