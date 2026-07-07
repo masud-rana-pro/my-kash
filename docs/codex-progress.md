@@ -45,11 +45,12 @@
 - Step 31 FCM transaction alert foundation: added `firebase_devices` migration, authenticated FCM token registration API, notification device entity/repository/DTO/mapper/service, FCM properties, and transaction alert service boundary that skips safely when FCM is disabled or Firebase Admin is not configured.
 - Step 32 Transaction alert wiring: connected `TransactionAlertService` to Add Money decisions, Loan decisions, Send Money, Merchant Payment, Savings Deposit, and Mobile Recharge success paths while keeping FCM delivery optional and non-blocking.
 - Step 33 API error response polish: added consistent JSON error handling for missing/invalid JWT, forbidden admin access, validation errors, duplicate/constraint conflicts, missing resources, and safe unexpected server errors.
+- Step 34 local E2E seed and API verification guide: added a dev-only PostgreSQL seed script for demo users/profiles/wallets and at least 15 rows in each main business table, plus a manual backend E2E API test guide with expected outputs.
 
 ## Last Commit
 
-- Last commit message: `step-33: polish backend api error responses`
-- Last commit hash: pending until Step 33 commit finalization.
+- Last commit message: `step-34: add backend e2e seed data guide`
+- Last commit hash: pending until Step 34 commit finalization.
 
 ## Important Architecture Decisions
 
@@ -104,6 +105,7 @@
 - Step 31 keeps notifications limited to important transaction alerts. Device tokens are persisted in PostgreSQL, and FCM sending is isolated in `TransactionAlertService` so controllers and business services do not contain Firebase Messaging details.
 - Step 32 keeps notification delivery out of controllers and uses the `TransactionAlertService` boundary from business services after successful state changes.
 - Step 33 standardizes backend error responses with `ApiErrorResponse` so Flutter can handle authentication, authorization, validation, conflict, not-found, and unexpected errors through one response shape.
+- Step 34 keeps E2E seed data outside Flyway migrations. Local demo data is loaded manually through `scripts/dev/seed-e2e-data.sql` and must not be treated as production data.
 - Money-changing operations require transactions, safe wallet locking, idempotency keys, and audit logs.
 - Codex uses a manual verification workflow by default: do focused changes, update learning/progress docs, run lightweight checks only, commit/push, and provide manual verification commands.
 
@@ -163,6 +165,7 @@
 - Step 31 implements FCM backend foundation only; it does not wire FCM alerts into every money-changing service yet, does not create Flutter notification UI, and does not require real deployed FCM delivery during local development.
 - Step 32 wires backend alert calls only; it does not add Flutter notification permissions/UI, background handlers, notification preferences, or guaranteed local FCM delivery.
 - Step 33 improves response consistency only; it does not add new business APIs, Flutter UI, database migrations, or external integrations.
+- Step 34 adds local testing data and documentation only; it does not change backend production schema, add APIs, bypass Firebase authentication, or create real money movement.
 - `flutter create` timed out in the sandbox, so the minimal Flutter skeleton was created manually and verified with Flutter tooling.
 - Global `mvn` is not available in the Codex session, so backend verification should use Maven Wrapper `.\mvnw.cmd`.
 - Flyway works against local PostgreSQL 17.10 after adding `flyway-database-postgresql`, but logs a warning that this Flyway version officially tested support up to PostgreSQL 16.
@@ -171,7 +174,7 @@
 
 ## Next Recommended Step
 
-- Ask the user to run Step 33 manual verification commands. After verification passes, the next recommended step is backend end-to-end API verification guide or Flutter API client foundation.
+- Ask the user to run Step 34 manual seed/API verification commands. After verification passes, the next recommended step is Flutter API client foundation, and before UI design Codex must ask for the user's sample/reference images.
 
 ## Standard Step Completion Format
 

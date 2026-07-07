@@ -103,3 +103,12 @@
 - Duplicate unique values or database constraint conflicts return JSON `409 Conflict`.
 - Missing resources return JSON `404 Not Found`.
 - Unexpected server errors return JSON `500 Internal Server Error` with a safe generic message.
+
+## Local E2E Seed Data
+
+- `scripts/dev/seed-e2e-data.sql` is local development seed data only.
+- Seed data is not a Flyway migration and must not run automatically in production.
+- Seed script requires a BCrypt hash for demo PIN `12345`; raw PIN is never inserted.
+- Seed script creates one admin, 15 customers, 15 merchants, profiles, wallets, and at least 15 rows for each main business table.
+- Seed count output should be checked after running the script.
+- `docs/backend-e2e-api-test-guide.md` explains expected manual database and API outputs.
