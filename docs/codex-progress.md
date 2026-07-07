@@ -48,11 +48,12 @@
 - Step 34 local E2E seed and API verification guide: added a dev-only PostgreSQL seed script for demo users/profiles/wallets and at least 15 rows in each main business table, plus a manual backend E2E API test guide with expected outputs.
 - Step 35 Flutter API client foundation: added Dio, secure token storage, centralized API client/providers, backend auth repository, backend token model, configurable API base URL, and Flutter-side API error mapping without adding UI screens or feature flows.
 - Step 36 Flutter auth flow foundation: added auth session state/status, Riverpod auth controller, Firebase current-user backend JWT sync, and local sign-out coordination without adding login/OTP UI or visual screen design.
+- Step 37 Flutter reference UI shell: recorded the user's reference-image UI rule and added SmartKash-original Home and Login UI shells inspired by the provided layout/hierarchy while using different branding and colors.
 
 ## Last Commit
 
-- Last commit message: `step-36: add Flutter auth flow foundation`
-- Last commit hash: pending until Step 36 commit finalization.
+- Last commit message: `step-37: add Flutter reference UI shell`
+- Last commit hash: pending until Step 37 commit finalization.
 
 ## Important Architecture Decisions
 
@@ -110,6 +111,7 @@
 - Step 34 keeps E2E seed data outside Flyway migrations. Local demo data is loaded manually through `scripts/dev/seed-e2e-data.sql` and must not be treated as production data.
 - Step 35 centralizes Flutter backend communication through `ApiClient`, maps backend `ApiErrorResponse` into `ApiException`, and stores only backend JWT values in secure storage.
 - Step 36 separates auth orchestration from UI: Firebase Auth remains in `FirebasePhoneAuthService`, backend JWT exchange remains in `BackendAuthRepository`, and `AuthController` coordinates state for future screens.
+- Step 37 establishes the UI reference rule: use provided screenshots for layout direction only, keep SmartKash branding/colors original, and ask for more screen-specific references or asset dimensions before future visual screen work when needed.
 - Money-changing operations require transactions, safe wallet locking, idempotency keys, and audit logs.
 - Codex uses a manual verification workflow by default: do focused changes, update learning/progress docs, run lightweight checks only, commit/push, and provide manual verification commands.
 
@@ -172,6 +174,7 @@
 - Step 34 adds local testing data and documentation only; it does not change backend production schema, add APIs, bypass Firebase authentication, or create real money movement.
 - Step 35 adds Flutter networking/storage foundation only; it does not add login screens, wallet screens, QR scanner UI, feature API integration, PIN storage, or visual design.
 - Step 36 adds Flutter auth state/controller foundation only; it does not add login/OTP screens, route guards, wallet feature UI, PIN UI, or final app visual design.
+- Step 37 adds visual UI shells only; it does not connect real Firebase OTP submission, backend login button actions, wallet APIs, QR scanner, feature APIs, or real promotional images.
 - `flutter create` timed out in the sandbox, so the minimal Flutter skeleton was created manually and verified with Flutter tooling.
 - Global `mvn` is not available in the Codex session, so backend verification should use Maven Wrapper `.\mvnw.cmd`.
 - Flyway works against local PostgreSQL 17.10 after adding `flyway-database-postgresql`, but logs a warning that this Flyway version officially tested support up to PostgreSQL 16.
@@ -180,7 +183,7 @@
 
 ## Next Recommended Step
 
-- Ask the user to run Step 36 manual Flutter verification commands. After verification passes, the next recommended step is collecting sample/reference images before building Flutter auth UI screens.
+- Ask the user to run Step 37 manual Flutter verification commands and visually inspect Home/Login screens. After verification passes, the next recommended step is wiring auth UI actions to Firebase test OTP flow.
 
 ## Standard Step Completion Format
 

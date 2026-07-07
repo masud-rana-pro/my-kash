@@ -123,3 +123,8 @@ features/send_money/providers/
 - Use reusable widgets for buttons, input fields, loading states, error states, and transaction cards.
 - Keep Firebase Auth logic separated from UI screens.
 - Keep QR scan logic inside a dedicated QR feature/module.
+- Use the user's provided mobile banking screenshots as reference for layout, spacing, hierarchy, and interaction flow.
+- Use original SmartKash visual identity with a different standard color theme from the reference screenshots.
+- Do not copy bKash branding, exact colors, logo, or promotional artwork.
+- Ask the user for more screen-specific reference images before designing future screens when needed.
+- If bitmap assets are needed and cannot be generated directly, request the asset from the user with recommended dimensions and content guidance.

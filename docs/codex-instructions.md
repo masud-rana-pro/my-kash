@@ -173,6 +173,10 @@ At the end of every step, Codex must respond with:
 - Keep Firebase Auth logic separated from UI screens.
 - Keep QR scan logic inside a dedicated QR feature/module.
 - Before starting Flutter UI design work, ask the user for sample/reference images and use those images as the visual direction.
+- User-provided bKash-like screenshots are reference images for layout, spacing, hierarchy, and interaction patterns only.
+- SmartKash UI must use original SmartKash branding, text, icons, and a different standard color theme; do not copy bKash branding, logo, exact colors, or promotional artwork.
+- Before designing any new screen group, ask the user for screen-specific reference images when the current references are not enough.
+- If a screen needs bitmap assets and Codex cannot generate suitable assets directly, ask the user for the asset with recommended size, format, and content instructions before implementing that screen.
 
 ## Learning Documentation Rule
 

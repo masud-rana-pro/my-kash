@@ -131,3 +131,11 @@
 - Backend JWT is saved only after `POST /api/auth/firebase-login` succeeds.
 - Sign-out clears Firebase session and backend JWT storage.
 - No login UI, OTP UI, route guard, wallet UI, or PIN UI is expected yet.
+
+## Flutter Reference UI Shell
+
+- Home screen follows the provided reference structure: header, profile/balance area, action grid, see-more control, promo strip, quick features, and bottom navigation.
+- Login screen follows the provided reference structure: top bar, language toggle, brand mark, account input, verification input, next bar, and numeric keypad.
+- SmartKash UI uses original branding, text, and different standard colors from the reference screenshots.
+- No bKash logo, exact bKash colors, or copied promotional artwork is used.
+- Login UI remains presentation-first and does not store PIN in Flutter.
