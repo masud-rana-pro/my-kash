@@ -47,11 +47,12 @@
 - Step 33 API error response polish: added consistent JSON error handling for missing/invalid JWT, forbidden admin access, validation errors, duplicate/constraint conflicts, missing resources, and safe unexpected server errors.
 - Step 34 local E2E seed and API verification guide: added a dev-only PostgreSQL seed script for demo users/profiles/wallets and at least 15 rows in each main business table, plus a manual backend E2E API test guide with expected outputs.
 - Step 35 Flutter API client foundation: added Dio, secure token storage, centralized API client/providers, backend auth repository, backend token model, configurable API base URL, and Flutter-side API error mapping without adding UI screens or feature flows.
+- Step 36 Flutter auth flow foundation: added auth session state/status, Riverpod auth controller, Firebase current-user backend JWT sync, and local sign-out coordination without adding login/OTP UI or visual screen design.
 
 ## Last Commit
 
-- Last commit message: `step-35: add Flutter API client foundation`
-- Last commit hash: pending until Step 35 commit finalization.
+- Last commit message: `step-36: add Flutter auth flow foundation`
+- Last commit hash: pending until Step 36 commit finalization.
 
 ## Important Architecture Decisions
 
@@ -108,6 +109,7 @@
 - Step 33 standardizes backend error responses with `ApiErrorResponse` so Flutter can handle authentication, authorization, validation, conflict, not-found, and unexpected errors through one response shape.
 - Step 34 keeps E2E seed data outside Flyway migrations. Local demo data is loaded manually through `scripts/dev/seed-e2e-data.sql` and must not be treated as production data.
 - Step 35 centralizes Flutter backend communication through `ApiClient`, maps backend `ApiErrorResponse` into `ApiException`, and stores only backend JWT values in secure storage.
+- Step 36 separates auth orchestration from UI: Firebase Auth remains in `FirebasePhoneAuthService`, backend JWT exchange remains in `BackendAuthRepository`, and `AuthController` coordinates state for future screens.
 - Money-changing operations require transactions, safe wallet locking, idempotency keys, and audit logs.
 - Codex uses a manual verification workflow by default: do focused changes, update learning/progress docs, run lightweight checks only, commit/push, and provide manual verification commands.
 
@@ -169,6 +171,7 @@
 - Step 33 improves response consistency only; it does not add new business APIs, Flutter UI, database migrations, or external integrations.
 - Step 34 adds local testing data and documentation only; it does not change backend production schema, add APIs, bypass Firebase authentication, or create real money movement.
 - Step 35 adds Flutter networking/storage foundation only; it does not add login screens, wallet screens, QR scanner UI, feature API integration, PIN storage, or visual design.
+- Step 36 adds Flutter auth state/controller foundation only; it does not add login/OTP screens, route guards, wallet feature UI, PIN UI, or final app visual design.
 - `flutter create` timed out in the sandbox, so the minimal Flutter skeleton was created manually and verified with Flutter tooling.
 - Global `mvn` is not available in the Codex session, so backend verification should use Maven Wrapper `.\mvnw.cmd`.
 - Flyway works against local PostgreSQL 17.10 after adding `flyway-database-postgresql`, but logs a warning that this Flyway version officially tested support up to PostgreSQL 16.
@@ -177,7 +180,7 @@
 
 ## Next Recommended Step
 
-- Ask the user to run Step 35 manual Flutter verification commands. After verification passes, the next recommended step is Flutter auth flow foundation; before visual UI design screens begin, Codex must ask for the user's sample/reference images.
+- Ask the user to run Step 36 manual Flutter verification commands. After verification passes, the next recommended step is collecting sample/reference images before building Flutter auth UI screens.
 
 ## Standard Step Completion Format
 

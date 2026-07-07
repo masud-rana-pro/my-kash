@@ -190,6 +190,13 @@ Step 35 adds the Flutter API client foundation:
 - `BackendAuthRepository` exchanges Firebase ID token with `POST /api/auth/firebase-login` and saves the backend JWT.
 - Feature UI must call repositories/providers, not `Dio` directly.
 
+Step 36 adds the Flutter auth flow foundation:
+
+- `AuthSessionState` stores auth status, backend token metadata, and error message.
+- `AuthController.syncBackendSession()` reads the current Firebase ID token, calls the backend login repository, and stores the backend JWT.
+- `AuthController.signOut()` signs out from Firebase and clears the backend JWT from secure storage.
+- No login screen, OTP screen, route guard, PIN UI, or visual design is added in this step.
+
 ## Flutter To Spring Boot Flow
 
 - User opens Flutter app.

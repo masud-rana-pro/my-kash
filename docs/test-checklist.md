@@ -123,3 +123,11 @@
 - PIN is not stored in Flutter.
 - API requests attach `Authorization: Bearer <backend-jwt>` only when a token exists.
 - Backend `ApiErrorResponse` JSON maps to Flutter `ApiException`.
+
+## Flutter Auth Flow Foundation
+
+- `AuthController` syncs an existing Firebase signed-in user with the backend login API.
+- `AuthSessionState` exposes initial, unauthenticated, authenticating, authenticated, and failure states.
+- Backend JWT is saved only after `POST /api/auth/firebase-login` succeeds.
+- Sign-out clears Firebase session and backend JWT storage.
+- No login UI, OTP UI, route guard, wallet UI, or PIN UI is expected yet.
