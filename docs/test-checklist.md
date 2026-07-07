@@ -139,3 +139,12 @@
 - SmartKash UI uses original branding, text, and different standard colors from the reference screenshots.
 - No bKash logo, exact bKash colors, or copied promotional artwork is used.
 - Login UI remains presentation-first and does not store PIN in Flutter.
+
+## Flutter Generated Brand Assets
+
+- `apps/mobile/assets/images/` contains SmartKash-generated logo/header/promo assets.
+- `pubspec.yaml` registers `assets/images/`.
+- Home header uses a generated SmartKash header image with readable overlay.
+- Home promo card uses a generated SmartKash fintech banner image.
+- Login screen uses the generated SmartKash logo mark.
+- Manual Flutter run should not show `Unable to load asset` errors.
