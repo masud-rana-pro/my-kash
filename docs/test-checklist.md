@@ -148,3 +148,6 @@
 - Home promo card uses a generated SmartKash fintech banner image.
 - Login screen uses the generated SmartKash logo mark.
 - Manual Flutter run should not show `Unable to load asset` errors.
+- Android launcher icon uses the generated SmartKash mark instead of the default Flutter icon.
+- Web favicon and PWA icons use the generated SmartKash mark instead of the default Flutter icon.
+- Web manifest theme color uses the SmartKash teal theme.

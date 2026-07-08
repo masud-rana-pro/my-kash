@@ -166,3 +166,60 @@ git push
 ## 11. What I learned from this step
 
 এই ধাপে শিখলাম Flutter app-এ generated image assets কীভাবে project folder-এ রাখা হয়, `pubspec.yaml`-এ register করা হয়, central constants class দিয়ে path manage করা হয়, এবং `Image.asset` দিয়ে UI screen-এ ব্যবহার করা হয়।
+
+## 12. Step 38b gap fix: launcher and web icons
+
+Audit করার পরে দেখা গেল Step 38 UI-এর ভিতরে generated assets ব্যবহার করলেও Android launcher icon এবং Web favicon/PWA icon এখনো default Flutter icon ছিল। তাই Step 38b-তে এই gap fix করা হয়েছে।
+
+### What was fixed
+
+- Android `mipmap-*` launcher icons generated SmartKash logo mark দিয়ে replace করা হয়েছে।
+- Android manifest-এ explicit app icon reference যোগ করা হয়েছে।
+- Web `favicon.png` replace করা হয়েছে।
+- Web `icons/Icon-192.png`, `Icon-512.png`, `Icon-maskable-192.png`, `Icon-maskable-512.png` replace করা হয়েছে।
+- Web manifest-এর `theme_color` SmartKash teal করা হয়েছে।
+
+### Important snippet
+
+```xml
+<application
+    android:icon="@mipmap/ic_launcher"
+    android:label="SmartKash"
+    android:theme="@style/LaunchTheme">
+```
+
+### Bangla explanation
+
+- `android:icon="@mipmap/ic_launcher"` Android-কে বলে launcher/home screen-এ কোন icon দেখাবে।
+- `@mipmap/ic_launcher` path Android density-specific icon folder থেকে correct size pick করে।
+- `android:label="SmartKash"` installed app-এর name দেখায়।
+- `android:theme="@style/LaunchTheme"` app launch হওয়ার সময় initial theme ব্যবহার করে।
+
+### Web manifest snippet
+
+```json
+"background_color": "#F5F7FA",
+"theme_color": "#008F7A"
+```
+
+### Bangla explanation
+
+- `background_color` PWA launch/loading background color control করে।
+- `theme_color` browser/app shell-এর theme tint control করে।
+- `#008F7A` SmartKash-এর teal brand color।
+
+### Manual verification
+
+```bat
+cd /d D:\github\my-kash\apps\mobile
+flutter pub get
+flutter analyze
+flutter run
+flutter build web
+```
+
+Expected:
+
+- Android emulator/device launcher বা recent apps-এ SmartKash logo mark দেখা যাবে।
+- Browser tab/PWA manifest icon SmartKash mark use করবে।
+- App UI-তে Home/Login generated assets আগের মতো load হবে।
