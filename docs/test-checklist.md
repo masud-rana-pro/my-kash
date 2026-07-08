@@ -185,6 +185,7 @@
 
 - `services/backend/.env` exists locally and is ignored by Git.
 - Spring Boot imports `optional:file:.env[.properties]` from the backend working directory.
+- Spring Boot also imports `optional:file:services/backend/.env[.properties]` so IDE/repository-root runs can still load backend env values.
 - Backend logs should say `Firebase Admin SDK initialized for project ...` when Firebase Admin values are valid.
 - Firebase private key values with surrounding quotes and escaped `\n` should be normalized before credential parsing.
 - Backend logs must not print the Firebase private key.
