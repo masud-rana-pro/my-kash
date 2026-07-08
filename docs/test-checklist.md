@@ -208,3 +208,4 @@
 - A Firebase failure message should not mean backend login was bypassed; Firebase verification must still be required before backend JWT login.
 - If the app is running on Chrome/Web, the login UI should explain that the current OTP setup is Android-only unless Firebase Web app config is added.
 - If backend JWT login times out after OTP, the UI should show a readable backend timeout message and keep `Verify & Login` available for retry instead of resetting to only `Send OTP`.
+- If backend JWT login rejects the Firebase token, Flutter should show the actual backend error instead of a generic Firebase Admin env warning, and the backend terminal should log the Firebase verification error code/message without logging the raw token.

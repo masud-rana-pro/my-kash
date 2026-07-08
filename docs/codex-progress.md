@@ -61,11 +61,12 @@
 - Step 45 Firebase OTP platform guard: blocked unsupported Chrome/Web OTP attempts with a clear message because the current Firebase client setup is Android-only.
 - Step 46 backend env import hardening: made Spring Boot import the ignored backend `.env` both when run from `services/backend` and when run from the repository root/IDE.
 - Step 47 login timeout and retry UX fix: increased Flutter API timeouts, mapped backend timeout/connection errors to clear messages, aligned app package constant, and kept OTP verification retry available after backend login failure.
+- Step 48 backend login diagnostics: replaced the generic Flutter backend-login env message with the actual backend error and added safe backend logging for Firebase token verification failures.
 
 ## Last Commit
 
-- Last commit message: `step-47: improve login backend retry handling`
-- Last commit hash: pending until Step 47 commit finalization.
+- Last commit message: `step-48: improve backend login diagnostics`
+- Last commit hash: pending until Step 48 commit finalization.
 
 ## Important Architecture Decisions
 
@@ -136,6 +137,7 @@
 - Step 45 confirms Firebase OTP is currently Android-only until a Firebase Web app config is added for Chrome/Web.
 - Step 46 imports both `optional:file:.env[.properties]` and `optional:file:services/backend/.env[.properties]` so Firebase Admin env values are found from CLI and IDE run modes.
 - Step 47 treats Firebase OTP and backend JWT login as two separate stages. If backend login times out after OTP, the UI keeps the OTP verification session available for retry instead of resetting to Send OTP.
+- Step 48 keeps Firebase ID tokens out of logs but logs Firebase verification error code/message so local login failures can be diagnosed without guessing.
 - Money-changing operations require transactions, safe wallet locking, idempotency keys, and audit logs.
 - Codex uses a manual verification workflow by default: do focused changes, update learning/progress docs, run lightweight checks only, commit/push, and provide manual verification commands.
 
@@ -212,6 +214,7 @@
 - Step 45 adds only a Flutter platform guard; it does not implement Web Firebase Phone Auth config, bypass OTP, or change backend authentication.
 - Step 46 changes only Spring config import paths; it does not commit `.env`, Firebase Admin JSON, local machine secrets, or change authentication rules.
 - Step 47 improves Flutter login retry/network messaging only; it does not bypass Firebase, create mock login, or change backend auth rules.
+- Step 48 improves diagnostics only; it does not bypass Firebase verification, log raw tokens, change JWT rules, or commit secrets.
 - `flutter create` timed out in the sandbox, so the minimal Flutter skeleton was created manually and verified with Flutter tooling.
 - Global `mvn` is not available in the Codex session, so backend verification should use Maven Wrapper `.\mvnw.cmd`.
 - Flyway works against local PostgreSQL 17.10 after adding `flyway-database-postgresql`, but logs a warning that this Flyway version officially tested support up to PostgreSQL 16.
@@ -220,7 +223,7 @@
 
 ## Next Recommended Step
 
-- Restart backend, verify `/actuator/health`, then run Android Firebase OTP login again. If timeout appears, keep the same OTP and tap Verify & Login again after backend is confirmed running.
+- Restart backend, run Android Firebase OTP login again, and use the new backend terminal warning if Firebase token verification still fails.
 
 ## Standard Step Completion Format
 
