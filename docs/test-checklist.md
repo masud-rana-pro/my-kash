@@ -161,3 +161,12 @@
 - Login UI shows loading, info, and error states.
 - If backend Firebase Admin env is missing, the UI shows a clear backend login error.
 - PIN is not stored or verified in Flutter during this step.
+
+## Flutter Auth Route Guard
+
+- Opening the app while unauthenticated redirects to the Login screen.
+- Successful Firebase OTP plus backend JWT login redirects to Home.
+- Home header shows the authenticated phone number and backend role from the backend JWT response.
+- Logout clears Firebase/backend local session and returns to Login.
+- Restarting the app attempts to restore an existing Firebase session and sync backend JWT.
+- This step does not add PIN setup UI, wallet UI, QR scanner UI, or money-changing feature UI.
