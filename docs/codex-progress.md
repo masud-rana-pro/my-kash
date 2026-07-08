@@ -52,11 +52,12 @@
 - Step 37b Flutter UI run fix: cleaned analyzer-blocking UI shell warnings by removing an unused import, replacing deprecated opacity calls, and fixing const lint issues so Flutter analysis passes again.
 - Step 38 Flutter generated brand assets: generated original SmartKash logo/header/promo images, registered Flutter assets, and wired them into Home and Login UI without copying reference-brand artwork.
 - Step 38b Flutter launcher and web icon polish: replaced default Android launcher and web favicon/PWA icons with the generated SmartKash logo mark and aligned web theme colors.
+- Step 39 Firebase OTP login UI: wired Login screen to Firebase Phone Auth test OTP, Firebase sign-in, backend JWT sync, loading/info/error states, and Android Google Services config support without adding PIN or wallet feature UI.
 
 ## Last Commit
 
-- Last commit message: `step-38b: polish Flutter app icons`
-- Last commit hash: recorded in Git history for the current Step 38b commit.
+- Last commit message: `step-39: wire Firebase OTP login UI`
+- Last commit hash: pending until Step 39 commit finalization.
 
 ## Important Architecture Decisions
 
@@ -118,6 +119,7 @@
 - Step 37b keeps the UI shell presentation-only while making analyzer output clean enough for local Flutter run/build verification.
 - Step 38 uses generated raster assets for visual polish while keeping paths centralized in `AppAssets`; final production icons can later be optimized/resized or replaced with vector/adaptive-icon assets.
 - Step 38b uses the generated SmartKash mark for Android launcher and web PWA icons so the installed app/browser tab no longer uses Flutter default branding.
+- Step 39 keeps Firebase Phone Auth logic in `FirebasePhoneAuthService`, backend JWT exchange in `BackendAuthRepository`, session orchestration in `AuthController`, and UI rendering in `LoginScreen`.
 - Money-changing operations require transactions, safe wallet locking, idempotency keys, and audit logs.
 - Codex uses a manual verification workflow by default: do focused changes, update learning/progress docs, run lightweight checks only, commit/push, and provide manual verification commands.
 
@@ -132,12 +134,13 @@
 - Firebase project name is `SmartKash`.
 - Android application ID is `com.imran.smartkash`.
 - Flutter platform folders are present for Android, iOS, Web, Windows, Linux, and macOS.
+- Firebase test phone number is configured by the user as `01575634380` / `+8801575634380`.
+- Firebase test OTP is configured by the user as `123456`.
+- Android client `google-services.json` has been placed by the user at `apps/mobile/android/app/google-services.json`.
 
 ## Pending Manual Setup
 
 - Confirm GitHub remote exists and is accessible.
-- Configure Firebase test phone numbers and fixed OTP codes in Firebase Console.
-- Place Android client `google-services.json` manually at `apps/mobile/android/app/google-services.json` only if needed for local Android Firebase runs; do not commit it.
 - Provide Firebase Admin SDK values through environment variables when backend token verification is tested.
 - Install Visual Studio Desktop development with C++ workload before Windows desktop builds.
 - Use macOS with Xcode before iOS/macOS builds.
@@ -184,6 +187,7 @@
 - Step 37b fixes analyzer-blocking UI shell warnings only; it does not wire Firebase OTP, backend login actions, wallet APIs, QR scanner, or feature APIs.
 - Step 38 adds image assets and UI polish only; it does not wire Firebase OTP, backend login actions, wallet APIs, QR scanner, app launcher icons, or feature APIs.
 - Step 38b updates app icons only; it does not implement adaptive icon XML, splash screen polish, Firebase OTP, backend login actions, wallet APIs, QR scanner, or feature APIs.
+- Step 39 wires login/auth only; it does not implement PIN setup UI, wallet dashboard API UI, money-changing flows, QR scanner UI, or feature APIs.
 - `flutter create` timed out in the sandbox, so the minimal Flutter skeleton was created manually and verified with Flutter tooling.
 - Global `mvn` is not available in the Codex session, so backend verification should use Maven Wrapper `.\mvnw.cmd`.
 - Flyway works against local PostgreSQL 17.10 after adding `flyway-database-postgresql`, but logs a warning that this Flyway version officially tested support up to PostgreSQL 16.
@@ -192,7 +196,7 @@
 
 ## Next Recommended Step
 
-- Ask the user to rerun Flutter manual verification commands and visually inspect generated Home/Login branding plus Android/Web app icons. After verification passes, the next recommended step is wiring auth UI actions to Firebase test OTP flow.
+- Ask the user to run Step 39 manual Firebase/backend login verification. After verification passes, the next recommended step is auth session guard and logged-in home state.
 
 ## Standard Step Completion Format
 

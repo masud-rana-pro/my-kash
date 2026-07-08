@@ -151,3 +151,13 @@
 - Android launcher icon uses the generated SmartKash mark instead of the default Flutter icon.
 - Web favicon and PWA icons use the generated SmartKash mark instead of the default Flutter icon.
 - Web manifest theme color uses the SmartKash teal theme.
+
+## Flutter Firebase OTP Login UI
+
+- Login screen sends Firebase Phone Auth OTP using test phone numbers only.
+- Login screen verifies the fixed Firebase test OTP and signs in to Firebase.
+- Firebase ID token is sent to backend `/api/auth/firebase-login` after OTP verification.
+- Backend JWT is saved through secure token storage when backend login succeeds.
+- Login UI shows loading, info, and error states.
+- If backend Firebase Admin env is missing, the UI shows a clear backend login error.
+- PIN is not stored or verified in Flutter during this step.
