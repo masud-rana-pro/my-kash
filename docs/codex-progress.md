@@ -57,11 +57,12 @@
 - Step 41 PIN setup UI flow: exposed safe `pinSet` metadata in `GET /api/users/me`, added Flutter PIN setup API/repository/controller state, added a SmartKash PIN setup screen, and routed authenticated users with missing PIN to setup before Home without storing PIN in Flutter.
 - Step 42 backend local env import: configured Spring Boot to import ignored `services/backend/.env` during local runs, normalized Firebase private key formatting, completed Firebase service account JSON fields, and verified Firebase Admin initialization without committing secrets.
 - Step 43 Firebase Android package alignment: aligned Android `namespace`, `applicationId`, and `MainActivity` package with the provided Firebase Android client config package `com.smartkash.app`.
+- Step 44 Firebase OTP error handling fix: wrapped Firebase phone verification failures in an app-safe exception and mapped them to clear user-facing messages instead of leaking platform TypeError text.
 
 ## Last Commit
 
-- Last commit message: `step-43: align Firebase Android package`
-- Last commit hash: pending until Step 43 commit finalization.
+- Last commit message: `step-44: fix Firebase OTP error handling`
+- Last commit hash: pending until Step 44 commit finalization.
 
 ## Important Architecture Decisions
 
@@ -128,6 +129,7 @@
 - Step 41 exposes only PIN metadata (`pinSet`, `pinUpdatedAt`) to Flutter. Raw PIN and PIN hash remain backend-only. Flutter sends PIN only when saving setup through `POST /api/auth/set-pin`.
 - Step 42 uses Spring Boot config import `optional:file:.env[.properties]` from the backend working directory. The `.env` file remains ignored by Git and must not be committed. Firebase private key formatting is normalized before Google credential parsing.
 - Step 43 uses Android application ID `com.smartkash.app` because the provided Firebase Android client config contains package name `com.smartkash.app`.
+- Step 44 keeps Firebase platform exceptions out of UI state by converting phone auth failures into a small local `FirebasePhoneAuthException` model before the controller builds user-facing copy.
 - Money-changing operations require transactions, safe wallet locking, idempotency keys, and audit logs.
 - Codex uses a manual verification workflow by default: do focused changes, update learning/progress docs, run lightweight checks only, commit/push, and provide manual verification commands.
 
@@ -200,6 +202,7 @@
 - Step 41 adds PIN setup UI only; it does not add PIN reset, biometric login, wallet dashboard API UI, money-changing screens, QR scanner UI, or feature APIs.
 - Step 42 adds environment loading only; it does not add mock auth, bypass Firebase token verification, change business APIs, or commit secrets.
 - Step 43 fixes Firebase Android package mismatch only; it does not add new login UI, wallet UI, business APIs, money-changing flows, or commit Firebase secret files.
+- Step 44 fixes OTP error messaging only; it does not bypass Firebase verification, add fake login, change backend auth, or implement wallet/feature screens.
 - `flutter create` timed out in the sandbox, so the minimal Flutter skeleton was created manually and verified with Flutter tooling.
 - Global `mvn` is not available in the Codex session, so backend verification should use Maven Wrapper `.\mvnw.cmd`.
 - Flyway works against local PostgreSQL 17.10 after adding `flyway-database-postgresql`, but logs a warning that this Flyway version officially tested support up to PostgreSQL 16.
@@ -208,7 +211,7 @@
 
 ## Next Recommended Step
 
-- Ask the user to run full Firebase OTP login verification again after Android package alignment. After verification passes, the next recommended step is Flutter wallet dashboard API integration.
+- Ask the user to run Firebase OTP login verification again. If OTP still fails, the UI should now show a clear Firebase reason instead of a platform TypeError; after verification passes, continue Flutter wallet dashboard API integration.
 
 ## Standard Step Completion Format
 

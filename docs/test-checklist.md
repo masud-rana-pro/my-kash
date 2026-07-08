@@ -199,3 +199,9 @@
 - `MainActivity.kt` must use package `com.smartkash.app`.
 - `flutter run` should pass `:app:processDebugGoogleServices` without `No matching client found for package name`.
 - The duplicate ignored copy at `apps/mobile/android/google-services.json` is not used by Gradle; the active file is under `android/app/`.
+
+## Firebase OTP Error Handling
+
+- When tapping `Send OTP`, the login UI must not show raw platform text such as `TypeError ... JavaScriptObject`.
+- Firebase phone verification failures should show a readable message, for example invalid phone number, too many attempts, Phone Auth disabled, or Android app not authorized.
+- A Firebase failure message should not mean backend login was bypassed; Firebase verification must still be required before backend JWT login.
