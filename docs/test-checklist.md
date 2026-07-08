@@ -190,3 +190,12 @@
 - Backend logs must not print the Firebase private key.
 - `.env`, Firebase service account JSON, and machine-specific secrets must remain unstaged.
 - A fake Firebase token should return `401 Invalid Firebase ID token`, confirming backend verification is active.
+
+## Firebase Android Client Package Alignment
+
+- `apps/mobile/android/app/google-services.json` must contain a Firebase Android client with package name `com.smartkash.app`.
+- `apps/mobile/android/app/build.gradle` must use `namespace 'com.smartkash.app'`.
+- `apps/mobile/android/app/build.gradle` must use `applicationId 'com.smartkash.app'`.
+- `MainActivity.kt` must use package `com.smartkash.app`.
+- `flutter run` should pass `:app:processDebugGoogleServices` without `No matching client found for package name`.
+- The duplicate ignored copy at `apps/mobile/android/google-services.json` is not used by Gradle; the active file is under `android/app/`.
