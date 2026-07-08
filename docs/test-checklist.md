@@ -180,3 +180,13 @@
 - Successful `POST /api/auth/set-pin` updates auth state to `pinSet=true` and routes to Home.
 - Flutter does not store the raw PIN locally.
 - This step does not add PIN reset, biometric login, wallet UI, QR scanner UI, or money-changing feature UI.
+
+## Backend Local Env Import
+
+- `services/backend/.env` exists locally and is ignored by Git.
+- Spring Boot imports `optional:file:.env[.properties]` from the backend working directory.
+- Backend logs should say `Firebase Admin SDK initialized for project ...` when Firebase Admin values are valid.
+- Firebase private key values with surrounding quotes and escaped `\n` should be normalized before credential parsing.
+- Backend logs must not print the Firebase private key.
+- `.env`, Firebase service account JSON, and machine-specific secrets must remain unstaged.
+- A fake Firebase token should return `401 Invalid Firebase ID token`, confirming backend verification is active.
