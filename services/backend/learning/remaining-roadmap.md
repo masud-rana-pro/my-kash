@@ -2,15 +2,9 @@
 
 ## Overview
 
-Step 50 ইতিমধ্যে committed (Firebase properties fix). নিচে বাকি steps:
-
-### Step 50: Login Final Verification & Cleanup
-
-Firebase OTP → backend JWT → user/wallet create → PIN setup/Home flow full verify. Any login leftovers fix.
-
-### Step 51: Wallet Home Dashboard Integration
-
-Home screen-এ real wallet balance, user name/phone, role, PIN state show.
+Step 50 ✅ Firebase Admin SDK properties fix committed (Backend)
+Step 51 ✅ Wallet balance integration on Home screen committed (Flutter)
+নিচে বাকি steps:
 
 ### Step 52: Transaction History UI
 
@@ -60,6 +54,6 @@ End-to-end manual test: login, PIN, wallet, add money approval, send money, paym
 
 ## Estimate
 
-- Minimum MVP finish: 12 steps
-- With admin UI + design polish + release prep: 15 steps
-- Very polished app-like UI: 18+ steps
+- Minimum MVP finish: 10 steps remaining
+- With admin UI + design polish + release prep: 13 steps remaining
+- Very polished app-like UI: 16+ steps remaining
