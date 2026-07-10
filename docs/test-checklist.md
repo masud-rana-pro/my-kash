@@ -206,6 +206,18 @@
 - Home wallet balance refreshes after successful recharge.
 - Backend database should show wallet debit, mobile recharge record, transaction record, ledger entry, and idempotency key completion.
 
+## Flutter Savings Goal UI
+
+- Home `Savings` action opens the Savings screen.
+- User can create a savings goal with name, target amount, and optional future target date.
+- Savings goal list loads from `GET /api/savings/goals`.
+- Goal cards show current amount, target amount, status, progress bar, and target date when available.
+- User can select an active goal and deposit with amount, PIN, and optional note.
+- Deposit sends `POST /api/savings/goals/{goalId}/deposit`.
+- One deposit attempt keeps one idempotency key so retrying the same attempt does not create duplicate wallet movement.
+- Successful deposit refreshes wallet balance and savings goal list.
+- Backend database should show wallet debit, updated savings goal current amount, transaction record, ledger entry, and idempotency key completion.
+
 ## Backend Local Env Import
 
 - `services/backend/.env` exists locally and is ignored by Git.

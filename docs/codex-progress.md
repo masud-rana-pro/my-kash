@@ -71,11 +71,12 @@
 - Step 55 QR Send Money foundation UI: added QR payload display/paste flow for Send Money receiver selection foundation.
 - Step 56 Merchant Payment UI completion: added backend merchant resolve API, connected Flutter Merchant Payment to real backend merchant validation, removed dummy merchant data, kept one stable idempotency key per payment attempt, refreshed wallet balance after success, and documented manual verification outputs.
 - Step 57 Mobile Recharge UI: added Flutter demo Mobile Recharge screen connected to existing backend wallet-debit recharge API, including operator selection, number/amount/note entry, PIN confirmation, stable idempotency key per attempt, recharge history list, wallet refresh, and manual verification documentation.
+- Step 58 Savings Goal UI: added Flutter Savings screen connected to existing backend goal create/list and wallet-debit deposit APIs, including goal progress cards, optional target date, PIN-confirmed deposits, stable idempotency key per deposit attempt, wallet refresh, and manual verification documentation.
 
 ## Last Commit
 
-- Last commit message: `step-57: add mobile recharge UI`
-- Last commit hash: pending until Step 57 commit finalization.
+- Last commit message: `step-58: add savings goal UI`
+- Last commit hash: pending until Step 58 commit finalization.
 
 ## Important Architecture Decisions
 
@@ -151,6 +152,7 @@
 - Step 56 resolves merchant accounts through `GET /api/payments/merchant/resolve` before showing the amount/PIN screens. Flutter must not use dummy merchant data for payment.
 - Step 56 keeps a stable merchant payment idempotency key for one payment attempt, so retrying the same attempt does not create a second payment.
 - Step 57 keeps Mobile Recharge as a zero-budget demo flow. Flutter calls the existing backend `/api/recharge` API, and the backend handles PIN verification, idempotency, wallet debit, transaction record, and ledger entry.
+- Step 58 keeps Savings Goal creation separate from Savings Deposit. Goal creation does not change wallet balance; deposit uses backend PIN verification, idempotency, wallet debit, transaction record, and ledger entry.
 - Money-changing operations require transactions, safe wallet locking, idempotency keys, and audit logs.
 - Codex uses a manual verification workflow by default: do focused changes, update learning/progress docs, run lightweight checks only, commit/push, and provide manual verification commands.
 
@@ -231,6 +233,7 @@
 - Step 49 changes only local ignored `.env` and documentation; it does not commit the generated JWT secret or change auth security rules.
 - Step 56 completes Merchant Payment UI for registered active merchants only; it does not add merchant QR payment, refund/chargeback, payment gateway integration, settlement reports, or admin merchant payment approval.
 - Step 57 adds Mobile Recharge UI only; it does not integrate a real recharge provider, SMS/top-up gateway, refund flow, operator package catalog, or provider callback handling.
+- Step 58 adds Savings Goal UI and deposit UI only; it does not add savings withdrawal, cancellation, profit/interest calculation, recurring deposits, or separate savings wallet accounting.
 - `flutter create` timed out in the sandbox, so the minimal Flutter skeleton was created manually and verified with Flutter tooling.
 - Global `mvn` is not available in the Codex session, so backend verification should use Maven Wrapper `.\mvnw.cmd`.
 - Flyway works against local PostgreSQL 17.10 after adding `flyway-database-postgresql`, but logs a warning that this Flyway version officially tested support up to PostgreSQL 16.
@@ -239,7 +242,7 @@
 
 ## Next Recommended Step
 
-- Step 58: add Savings Goal list/create UI connected to the existing backend savings goal APIs.
+- Step 59: add Loan request/status UI connected to the existing backend loan request APIs.
 
 ## Standard Step Completion Format
 
