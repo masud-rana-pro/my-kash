@@ -218,6 +218,18 @@
 - Successful deposit refreshes wallet balance and savings goal list.
 - Backend database should show wallet debit, updated savings goal current amount, transaction record, ledger entry, and idempotency key completion.
 
+## Flutter Loan Request UI
+
+- Home `Loan` action opens the Loan screen.
+- User can submit a loan request with amount and purpose.
+- Amount must be at least `BDT 1.00`.
+- Purpose is required and limited by backend validation.
+- Request list loads from `GET /api/loans/requests`.
+- Submitted requests appear as `PENDING`.
+- Admin approval/rejection can later change request status to `APPROVED` or `REJECTED`.
+- No wallet credit, loan disbursement, repayment, installment, or interest flow should happen in the Flutter Loan screen.
+- Backend database should show a new `loan_requests` row after successful submission.
+
 ## Backend Local Env Import
 
 - `services/backend/.env` exists locally and is ignored by Git.
