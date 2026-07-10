@@ -230,6 +230,18 @@
 - No wallet credit, loan disbursement, repayment, installment, or interest flow should happen in the Flutter Loan screen.
 - Backend database should show a new `loan_requests` row after successful submission.
 
+## Flutter Registration And Profile Flow
+
+- Login screen text says `Log in or register`.
+- Existing Firebase/backend user with PIN and completed profile should go to Home after OTP login.
+- New/minimal user should go through OTP login, PIN setup, profile completion, then Home.
+- Profile completion requires full name and supports optional email and profile image URL.
+- Profile image URL preview should show the image when reachable and a fallback initial when empty.
+- Account bottom navigation opens the Account screen instead of returning to Login.
+- Account screen shows name, phone number, role, email, PIN status, wallet balance, profile image/fallback avatar, and sign-out.
+- `POST /api/auth/firebase-login` should not be blocked by a stale/expired backend JWT stored locally.
+- Backend `JwtAuthenticationFilter` should skip public auth/health/docs endpoints.
+
 ## Backend Local Env Import
 
 - `services/backend/.env` exists locally and is ignored by Git.

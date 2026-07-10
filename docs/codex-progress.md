@@ -73,11 +73,12 @@
 - Step 57 Mobile Recharge UI: added Flutter demo Mobile Recharge screen connected to existing backend wallet-debit recharge API, including operator selection, number/amount/note entry, PIN confirmation, stable idempotency key per attempt, recharge history list, wallet refresh, and manual verification documentation.
 - Step 58 Savings Goal UI: added Flutter Savings screen connected to existing backend goal create/list and wallet-debit deposit APIs, including goal progress cards, optional target date, PIN-confirmed deposits, stable idempotency key per deposit attempt, wallet refresh, and manual verification documentation.
 - Step 59 Loan request/status UI: added Flutter Loan screen connected to existing backend loan request create/list APIs, showing MVP Phase 1 status-only behavior without wallet disbursement, repayment, installments, or money-changing flow.
+- Step 60 Registration/profile flow: added profile completion registration step after Firebase login and PIN setup, added URL-based profile image support in Flutter, added Account screen from bottom navigation, exposed profile completion in auth state, and hardened Firebase login so stale backend JWT does not block login/register.
 
 ## Last Commit
 
-- Last commit message: `step-59: add loan request UI`
-- Last commit hash: pending until Step 59 commit finalization.
+- Last commit message: `step-60: add registration profile flow`
+- Last commit hash: pending until Step 60 commit finalization.
 
 ## Important Architecture Decisions
 
@@ -155,6 +156,8 @@
 - Step 57 keeps Mobile Recharge as a zero-budget demo flow. Flutter calls the existing backend `/api/recharge` API, and the backend handles PIN verification, idempotency, wallet debit, transaction record, and ledger entry.
 - Step 58 keeps Savings Goal creation separate from Savings Deposit. Goal creation does not change wallet balance; deposit uses backend PIN verification, idempotency, wallet debit, transaction record, and ledger entry.
 - Step 59 keeps Loan MVP Phase 1 status-only. Flutter can create/list requests, but approval/rejection only changes request status and does not credit wallet or create repayment schedules.
+- Step 60 registration flow is OTP-first and profile-completion-after-login. Existing users with PIN and profile go to Home; new/minimal users complete PIN and profile before Home. Profile image is URL-based to avoid paid storage services.
+- Step 60 keeps `/api/auth/firebase-login` free from stale backend JWT interference on both Flutter API client and backend JWT filter.
 - Money-changing operations require transactions, safe wallet locking, idempotency keys, and audit logs.
 - Codex uses a manual verification workflow by default: do focused changes, update learning/progress docs, run lightweight checks only, commit/push, and provide manual verification commands.
 
@@ -237,6 +240,7 @@
 - Step 57 adds Mobile Recharge UI only; it does not integrate a real recharge provider, SMS/top-up gateway, refund flow, operator package catalog, or provider callback handling.
 - Step 58 adds Savings Goal UI and deposit UI only; it does not add savings withdrawal, cancellation, profit/interest calculation, recurring deposits, or separate savings wallet accounting.
 - Step 59 adds Loan request/status UI only; it does not add loan disbursement, wallet credit, repayment, installments, interest calculation, or loan contract documents.
+- Step 60 adds profile completion/account UI only; it does not add paid image upload storage, gallery picker upload, KYC/NID verification, or real identity verification.
 - `flutter create` timed out in the sandbox, so the minimal Flutter skeleton was created manually and verified with Flutter tooling.
 - Global `mvn` is not available in the Codex session, so backend verification should use Maven Wrapper `.\mvnw.cmd`.
 - Flyway works against local PostgreSQL 17.10 after adding `flyway-database-postgresql`, but logs a warning that this Flyway version officially tested support up to PostgreSQL 16.
@@ -245,7 +249,7 @@
 
 ## Next Recommended Step
 
-- Step 60: add profile/account screen polish and connect bottom navigation Account action.
+- Step 61: add lightweight Inbox/notification list UI or polish remaining placeholder bottom navigation items.
 
 ## Standard Step Completion Format
 
