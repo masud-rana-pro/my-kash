@@ -280,3 +280,10 @@
 - Inbox screen explains that SmartKash sends important transaction alerts only.
 - Inbox screen lists alert categories for Add Money, Send Money, Merchant Payment, Recharge/Savings, and Loan status.
 - Inbox screen clearly says persisted notification history is future scope.
+
+## Flutter Home MVP Placeholders
+
+- Tapping `Cash Out` shows a clear MVP scope notice instead of doing nothing.
+- Tapping `Pay Bill` shows a clear MVP scope notice instead of doing nothing.
+- Tapping `See More` shows which flows are currently active and says extra services are later scope.
+- Placeholder notices must not create fake transactions or call backend money APIs.
