@@ -235,8 +235,9 @@
 - Login screen text says `Log in or register`.
 - Existing Firebase/backend user with PIN and completed profile should go to Home after OTP login.
 - New/minimal user should go through OTP login, PIN setup, profile completion, then Home.
-- Profile completion requires full name and supports optional email and profile image URL.
-- Profile image URL preview should show the image when reachable and a fallback initial when empty.
+- Profile completion requires full name and supports optional email and profile image upload.
+- Profile image upload should create a generated file under the backend profile image folder and save `avatar_image_id` in `user_profiles`.
+- Profile image should display through `/api/users/profile-images/{imageId}` after saving.
 - Account bottom navigation opens the Account screen instead of returning to Login.
 - Account screen shows name, phone number, role, email, PIN status, wallet balance, profile image/fallback avatar, and sign-out.
 - `POST /api/auth/firebase-login` should not be blocked by a stale/expired backend JWT stored locally.

@@ -144,7 +144,9 @@ Step 33 improves this shared API error behavior for Spring Security and global e
 ## User APIs
 
 - `GET /api/users/me`: read the authenticated user's persisted user/profile foundation record.
-- `PUT /api/users/me/profile`: create or update the authenticated user's minimal profile fields: `fullName`, `email`, and `avatarUrl`.
+- `PUT /api/users/me/profile`: create or update the authenticated user's minimal profile fields: `fullName` and `email`.
+- `POST /api/users/me/profile-image`: upload the authenticated user's profile image as multipart form-data field `image`. The backend stores the file in the configured local profile image folder and saves only a generated `avatarImageId` reference in PostgreSQL.
+- `GET /api/users/profile-images/{imageId}`: read a stored profile image by generated image id so Flutter can display it without paid cloud storage.
 - Profile update resolves the user from the authenticated backend JWT/Firebase UID and never accepts a user ID in the request body.
 - Firebase login now creates or finds the minimal persisted `users` record by Firebase UID, using the Firebase phone number as the unique SmartKash mobile number.
 - New Firebase-linked users start as `CUSTOMER` and `ACTIVE` until later profile, PIN, merchant, or admin management steps update them.

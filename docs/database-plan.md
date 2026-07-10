@@ -62,11 +62,14 @@ Step 07 creates only the minimal identity foundation: Firebase UID, mobile numbe
 - `user_id`
 - `full_name`
 - `email`
+- `avatar_image_id`
 - `avatar_url`
 - `created_at`
 - `updated_at`
 
 Profile fields stay minimal in the first foundation step. KYC/NID/provider-backed identity fields are not part of the zero-budget MVP foundation.
+
+Profile image files are stored by the Spring Boot backend in the configured local profile image folder for the learning MVP. PostgreSQL stores `avatar_image_id` as the backend-generated unique reference. The old `avatar_url` field is kept only for backward compatibility; new SmartKash profile image uploads should use backend file storage and the generated image id.
 
 ### wallets
 

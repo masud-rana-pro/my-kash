@@ -18,6 +18,7 @@
 - Admin routes and admin APIs require authenticated `ADMIN` role.
 - Customer and merchant users must not access admin pages or admin APIs.
 - User profile update must resolve the user from the authenticated backend JWT/Firebase UID and must not accept a user ID from the request body.
+- User profile image upload must resolve the user from the authenticated backend JWT/Firebase UID, validate image type/size, store the file in the backend-controlled profile image folder, and save only a backend-generated image id in PostgreSQL.
 - Wallet read must resolve the user from the authenticated backend JWT/Firebase UID and must not accept a user ID from the request body.
 - Wallet lifecycle creation must happen from backend-trusted authenticated user context, not from a user-supplied user ID.
 - Avoid complex role/permission management in MVP Phase 1.
