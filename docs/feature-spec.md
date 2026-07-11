@@ -15,11 +15,11 @@ SmartKash is a Flutter full cross-platform MVP for Android, iOS, Web, Windows, L
 
 ## Add Money
 
-- Customer submits an Add Money request.
-- Request stays pending until an admin approves or rejects it.
-- Approval creates wallet credit, immutable ledger entry, and user-facing transaction record.
-- Rejection updates request status only.
-- Add Money approval must use an idempotency key to avoid duplicate credit.
+- Customer enters an amount, selects a demo source, and submits Add Money.
+- Add Money is instant in the current SmartKash learning MVP; no admin approval or pending state is required.
+- Submit creates wallet credit, immutable ledger entry, and user-facing transaction record in one backend transaction.
+- Add Money submit must use an idempotency key to avoid duplicate wallet credit on double tap or retry.
+- The saved `add_money_requests` row acts as the user's Add Money/top-up record and should normally be `APPROVED` immediately.
 
 ## Send Money
 
@@ -61,6 +61,7 @@ Successful Send Money must:
 - User can view transaction history.
 - User can filter by date, type, and status.
 - User can open transaction details as a receipt.
+- The Flutter Inbox tab contains a Transactions view with search and receipt bottom sheet.
 - Transaction records are user-facing summaries; ledger entries are internal immutable accounting records.
 
 ## Savings

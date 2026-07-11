@@ -73,14 +73,14 @@ features/send_money/providers/
 - PIN verification screen
 - Home dashboard
 - Wallet balance view
-- Add Money request screen
-- Add Money request status screen
+- Instant Add Money screen
+- Add Money success/history screen
 - Send Money by mobile number screen
 - QR scan Send Money screen
 - Send Money confirmation screen
 - Merchant Payment screen
-- Statement and transaction filter screen
-- Transaction receipt screen
+- Inbox Transactions screen with search/filter controls
+- Transaction receipt bottom sheet
 - Savings goal list screen
 - Savings goal create screen
 - Savings deposit screen
@@ -96,7 +96,6 @@ features/send_money/providers/
 - Users list
 - Transactions list
 - Add Money requests list
-- Add Money approval/rejection action
 - Loan requests list
 - Loan approval/rejection action
 - Recharges list

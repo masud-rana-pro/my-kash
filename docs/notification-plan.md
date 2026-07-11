@@ -18,7 +18,7 @@ Step 31 backend foundation:
 
 Step 32 transaction alert wiring:
 
-- Add Money approval/rejection calls `TransactionAlertService`.
+- Instant Add Money success calls `TransactionAlertService`.
 - Loan approval/rejection calls `TransactionAlertService`.
 - Send Money sends alerts to sender and receiver after successful transfer.
 - Merchant Payment sends alerts to customer and merchant after successful payment.
@@ -28,8 +28,7 @@ Step 32 transaction alert wiring:
 
 ## MVP Notification Events
 
-- Add Money approved.
-- Add Money rejected.
+- Add Money completed.
 - Send Money completed.
 - Merchant Payment completed.
 - Savings deposit completed.

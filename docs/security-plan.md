@@ -47,8 +47,8 @@ Every money-changing request must validate:
 
 - Authenticated backend JWT.
 - User account status.
-- PIN confirmation.
-- Sender wallet status.
+- PIN confirmation when the feature spends or transfers funds.
+- Wallet status.
 - Sender balance, when debit is required.
 - Idempotency key.
 - Feature-specific receiver or target resource.
@@ -57,7 +57,7 @@ Every money-changing operation must run in a database transaction and use optimi
 
 Idempotency keys must be stored per authenticated user. The backend should store a request hash instead of raw sensitive request bodies, so retries can be compared safely without exposing PINs or private payload data.
 
-Step 17 Add Money request creation is not a wallet balance change. It requires authentication and stores a pending request only; later admin approval will require idempotency, audit logging, ledger entries, transaction records, and wallet credit rules.
+Current Add Money MVP behavior is an instant wallet credit, not an admin approval flow. `POST /api/add-money/requests` requires authenticated active user, active wallet, idempotency key, safe wallet locking, transaction record, immutable credit ledger entry, and a saved Add Money record. Because this is a zero-budget demo top-up, it does not require PIN confirmation and does not call a real bank or payment gateway.
 
 ## QR Send Money Security
 
@@ -105,11 +105,11 @@ Use environment variables based on `.env.example`.
 
 ## Audit
 
-Admin actions such as Add Money approval, Add Money rejection, Loan approval, and Loan rejection should create admin audit log records.
+Admin actions such as Loan approval and Loan rejection should create admin audit log records.
 
-Critical money operations such as Send Money, Merchant Payment, Savings Deposit, Mobile Recharge, and Add Money approval should also be auditable through transaction references, ledger entries, and audit records where appropriate.
+Critical money operations such as Add Money submit, Send Money, Merchant Payment, Savings Deposit, and Mobile Recharge should also be auditable through transaction references, ledger entries, and audit records where appropriate.
 
-Step 24 applies this rule to Add Money approval. The admin approval endpoint requires `ADMIN` role and idempotency key, locks the target wallet, creates a transaction record and immutable ledger entry, and records an admin audit log. Repeating the same idempotency key must not credit the wallet twice.
+Current Add Money flow applies the money-changing rule directly at customer submit time. Repeating the same idempotency key with the same request must not credit the wallet twice.
 
 Step 16 creates the admin audit log persistence foundation only. It does not expose audit logs through admin APIs yet and does not wire audit logging into approval flows yet.
 

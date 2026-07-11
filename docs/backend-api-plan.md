@@ -161,9 +161,9 @@ Step 33 improves this shared API error behavior for Spring Security and global e
 
 ## Add Money APIs
 
-- `POST /api/add-money/requests`: create Add Money request.
-- `GET /api/add-money/requests`: list current user's Add Money requests.
-- Step 17 implements customer Add Money request create/list foundation only. New requests are saved as `PENDING`; no admin approval, wallet credit, ledger entry, transaction record, idempotency record, or FCM alert is created yet.
+- `POST /api/add-money/requests`: instantly add demo money to the current user's wallet.
+- `GET /api/add-money/requests`: list current user's Add Money/top-up records.
+- Current MVP direction: Add Money does not require admin approval. The customer request must include `amount`, `sourceType`, and `idempotencyKey`; the backend locks the wallet, credits balance, creates a successful `ADD_MONEY` transaction record, creates an immutable credit ledger entry, completes idempotency, and saves the Add Money row as `APPROVED` immediately.
 
 ## Send Money APIs
 
@@ -218,8 +218,6 @@ All admin routes require authenticated `ADMIN` role.
 - `GET /admin/users`
 - `GET /admin/transactions`
 - `GET /admin/add-money/requests`
-- `POST /admin/add-money/requests/{id}/approve`
-- `POST /admin/add-money/requests/{id}/reject`
 - `GET /admin/loans/requests`
 - `POST /admin/loans/requests/{id}/approve`
 - `POST /admin/loans/requests/{id}/reject`
@@ -233,7 +231,7 @@ Step 23 implements the minimal read-only admin API foundation for `GET /admin/us
 
 Step 28 updates `GET /admin/payments` to return `MERCHANT_PAYMENT` transaction records after merchant payment persistence exists.
 
-Step 24 implements Add Money admin approval/rejection. Approval requires `ADMIN` role and an idempotency key, locks the Add Money request and customer wallet, changes the request to `APPROVED`, credits the customer wallet, creates a user-facing `ADD_MONEY` transaction record, creates an immutable `CREDIT` ledger entry, stores idempotency completion, and records an admin audit log in one database transaction. Rejection changes only the request status to `REJECTED`, stores idempotency completion, and records an audit log; it does not change wallet balance or create ledger/transaction records.
+Current MVP direction removes Add Money admin approval/rejection from the active API surface. Admin may still read Add Money records, but customer Add Money submit performs the wallet credit immediately with idempotency, transaction, and ledger protection.
 
 Step 25 implements Loan admin approval/rejection status-only flow. Approval or rejection requires `ADMIN` role, locks the loan request, updates `status`, `reviewed_by`, and `reviewed_at`, and records an admin audit log. It does not disburse money, credit wallets, create transactions, create ledger entries, create idempotency records, or manage repayments/installments.
 
@@ -247,7 +245,7 @@ Applies to:
 
 - Send Money
 - Merchant Payment
-- Add Money approval
+- Add Money submit
 - Savings deposit
 - Mobile Recharge
 - Future Loan wallet credit if added later

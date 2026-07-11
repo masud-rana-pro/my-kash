@@ -8,7 +8,7 @@ SmartKash is a bKash-like zero-budget learning MVP. The goal is to learn how to 
 
 - Customer: uses wallet features such as Add Money, Send Money, Payment, Savings, Loan request, Recharge, and Statement.
 - Merchant: receives merchant payments and has a wallet like a normal user.
-- Admin: manages minimal operational actions such as Add Money approval, Loan approval or rejection, and viewing records.
+- Admin: manages minimal operational actions such as Loan approval or rejection and viewing records. Add Money is instant in the learning MVP and does not need admin approval.
 
 ## MVP Scope
 

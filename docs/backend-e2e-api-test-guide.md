@@ -257,7 +257,7 @@ Expected money API success outputs:
 - Merchant Payment: response includes payment transaction reference, merchant number, amount, and status.
 - Savings Deposit: response includes transaction reference, goal ID, deposited amount, and updated goal amount.
 - Mobile Recharge: response includes recharge ID, transaction reference, operator, mobile number, amount, and status.
-- Add Money Approval: response includes request status, wallet credit transaction reference, amount, and audit-backed approval data.
+- Instant Add Money: customer submit returns an approved Add Money record; wallet balance, transaction history, and ledger entries should update without admin approval.
 
 Expected duplicate idempotency output:
 

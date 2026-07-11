@@ -2,7 +2,7 @@
 
 ## Scope
 
-The MVP admin panel is minimal. It supports operational review and status actions only.
+The MVP admin panel is minimal. It supports operational review and loan status actions only. Add Money does not require admin approval in the current learning MVP.
 
 Do not add full dashboards, analytics, reports, advanced settings, or complex role management in MVP Phase 1.
 
@@ -14,7 +14,7 @@ Admin functionality remains backend-owned through Spring Boot routes/APIs. The F
 - Customers and merchants must not access admin pages or APIs.
 - Admin actions should be written to `admin_audit_logs`.
 - Step 16 creates the `admin_audit_logs` persistence foundation and internal service helper only. Admin audit list APIs and approval/rejection flow integration are future scope.
-- Admin controllers must stay thin and delegate approval/rejection logic to services.
+- Admin controllers must stay thin and delegate approval/rejection logic to services when status actions exist.
 - Admin APIs must use request/response DTOs and must not expose entities directly.
 
 ## Admin Pages
@@ -32,8 +32,6 @@ Admin functionality remains backend-owned through Spring Boot routes/APIs. The F
 - `GET /admin/users`
 - `GET /admin/transactions`
 - `GET /admin/add-money/requests`
-- `POST /admin/add-money/requests/{id}/approve`
-- `POST /admin/add-money/requests/{id}/reject`
 - `GET /admin/loans/requests`
 - `POST /admin/loans/requests/{id}/approve`
 - `POST /admin/loans/requests/{id}/reject`
@@ -41,31 +39,13 @@ Admin functionality remains backend-owned through Spring Boot routes/APIs. The F
 - `GET /admin/payments`
 - `GET /admin/audit-logs`
 
-Step 23 implements the minimal read-only admin API foundation for these `GET` routes. All `/admin/**` routes require authenticated `ADMIN` role. Approval/rejection routes, dashboards, analytics, advanced settings, and complex role management remain future scope.
+Step 23 implements the minimal read-only admin API foundation for these `GET` routes. All `/admin/**` routes require authenticated `ADMIN` role. Dashboards, analytics, advanced settings, and complex role management remain future scope.
 
-Step 24 implements Add Money approval/rejection only. Approval is a money-changing admin action and must create wallet credit, transaction record, immutable ledger entry, idempotency record, and audit log. Rejection must not change wallet balance.
+Current MVP direction removes Add Money approval/rejection from the active admin API surface. Admin can read Add Money records, but customer Add Money submit credits the wallet immediately through the customer API.
 
 Step 25 implements Loan approval/rejection as status-only. Loan approval does not disburse money, credit wallets, create transactions, create ledger entries, create idempotency records, or create repayment/installment records in MVP Phase 1.
 
 ## Admin Actions
-
-### Add Money Approval
-
-- Validate request is pending.
-- Validate admin role.
-- Validate idempotency key.
-- Credit customer wallet.
-- Create immutable ledger entry.
-- Create user-facing transaction record.
-- Create admin audit log.
-- Step 24 implements approval wallet credit, transaction, ledger, idempotency, and audit logging. FCM alert is still future notification scope.
-
-### Add Money Rejection
-
-- Validate request is pending.
-- Validate admin role.
-- Update request status to rejected.
-- Create audit log.
 
 ### Loan Approval Or Rejection
 

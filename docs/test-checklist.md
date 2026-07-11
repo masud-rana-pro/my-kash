@@ -59,14 +59,14 @@
 - Customer cannot access admin routes.
 - Merchant cannot access admin routes.
 - Admin routes list matches `docs/backend-api-plan.md`.
-- Add Money approval creates wallet credit, ledger entry, transaction record, and audit log.
+- Add Money submit creates wallet credit, ledger entry, transaction record, and Add Money record without admin approval.
 - Loan approval/rejection only updates request status.
 
 ## Idempotency
 
 - Send Money requires idempotency key.
 - Merchant Payment requires idempotency key.
-- Add Money approval requires idempotency key.
+- Add Money submit requires idempotency key.
 - Savings deposit requires idempotency key.
 - Mobile Recharge requires idempotency key.
 - Future Loan wallet credit must require idempotency key.
@@ -277,9 +277,9 @@
 ## Flutter Notification Inbox
 
 - Bottom navigation `Inbox` opens the notification inbox screen.
-- Inbox screen explains that SmartKash sends important transaction alerts only.
-- Inbox screen lists alert categories for Add Money, Send Money, Merchant Payment, Recharge/Savings, and Loan status.
-- Inbox screen clearly says persisted notification history is future scope.
+- Inbox screen has `Transactions` and `Notifications` tabs.
+- `Transactions` tab lists user transaction history, supports search by TrxID/number/type, and opens a receipt bottom sheet.
+- `Notifications` tab shows MVP alert/offer cards while full persisted notification history remains future scope.
 
 ## Flutter Home MVP Placeholders
 

@@ -125,14 +125,14 @@ Step 13 transaction records are schema/entity/repository foundation only. Transa
 - `user_id`
 - `amount`
 - `source_type`
-- `status`: `PENDING`, `APPROVED`, `REJECTED`
+- `status`: `APPROVED` for normal instant Add Money records; historical `PENDING`/`REJECTED` values may exist from earlier planning.
 - `approved_by`
 - `approved_at`
 - `note`
 - `created_at`
 - `updated_at`
 
-Step 17 creates the Add Money request foundation only. Customer requests start as `PENDING`. Step 24 adds admin approval/rejection. Approval credits the customer wallet, creates a user-facing transaction record, creates an immutable credit ledger entry, stores idempotency completion, and records admin audit logs. Rejection updates request status and audit/idempotency only; it does not change wallet balance.
+Current MVP direction uses this table as an Add Money/top-up record table. Customer Add Money submit should immediately save the row as `APPROVED`, credit the wallet, create a user-facing `ADD_MONEY` transaction record, create an immutable credit ledger entry, and complete the idempotency key in one database transaction. Admin approval is not required for Add Money.
 
 ### merchants
 

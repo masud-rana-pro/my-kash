@@ -96,7 +96,7 @@ If manual verification passes, continue to the next step. If manual verification
 
 ## Phase 5: Core Money Features
 
-- Add Money request and admin approval.
+- Instant Add Money with idempotency, wallet credit, transaction record, and ledger entry.
 - Send Money by mobile number.
 - QR Send Money receiver resolution and validation.
 - Merchant Payment.
