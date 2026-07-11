@@ -80,11 +80,12 @@
 - Step 64 Quick Features demo navigation cleanup: made Home Quick Features actionable by linking History to Transactions, Teletalk to Recharge, Transfer to Send Money, Goals to Savings, and adding honest MVP notices for Rewards and Offers.
 - Step 65 Local demo seed data: ran the existing E2E seed script against local PostgreSQL so the main SmartKash tables have at least 15 valid rows for app testing, with seed PIN `12345` for generated demo users.
 - Step 66 Instant Add Money and Inbox Transactions: changed Add Money from admin approval/pending flow to instant customer top-up with idempotency, wallet credit, transaction record, immutable credit ledger entry, refreshed Flutter Add Money UI, and redesigned Inbox with Transactions/Notifications tabs plus receipt bottom sheet.
+- Step 67 Complete Inbox transaction coverage: added loan request transaction records so Loan also appears in Inbox transaction history, and expanded the Inbox Notifications tab to cover the planned core areas: Add Money, Send Money, Merchant Payment, Statement, Transactions, Savings, Loan, and Mobile Recharge.
 
 ## Last Commit
 
-- Last commit message: `step-66: make add money instant and polish inbox transactions`
-- Last commit hash: pending until Step 66 commit finalization.
+- Last commit message: `step-67: complete inbox transaction coverage`
+- Last commit hash: pending until Step 67 commit finalization.
 
 ## Important Architecture Decisions
 
@@ -171,6 +172,7 @@
 - Step 65 uses local-only seed data for testing. Seed users, wallets, transactions, requests, merchants, devices, and audit rows are demo data only and must not be treated as real financial records.
 - Step 66 changes the active Add Money direction: customer submit instantly credits the wallet. Add Money no longer has active admin approve/reject endpoints in the MVP, but the existing `add_money_requests` table is reused as the top-up record table to avoid rewriting committed Flyway migrations.
 - Step 66 places transaction history inside the Flutter Inbox tab, using a `Transactions` tab with search and a receipt bottom sheet, while `Notifications` remains a lightweight alert/offer view until persisted notification history is added.
+- Step 67 ensures the planned Loan feature also contributes a `LOAN_REQUEST` transaction history record when a user submits a loan request. This record is status/history only and does not disburse money or create ledger entries.
 - Money-changing operations require transactions, safe wallet locking, idempotency keys, and audit logs.
 - Codex uses a manual verification workflow by default: do focused changes, update learning/progress docs, run lightweight checks only, commit/push, and provide manual verification commands.
 
@@ -260,6 +262,7 @@
 - Step 64 updates navigation only; it does not add new backend APIs, campaign/reward engines, offer eligibility rules, or additional money-changing flows.
 - Step 65 inserts local demo records only; it does not change production schema, add migrations, bypass Firebase auth, or create real money movement.
 - Step 66 does not integrate real bank APIs, payment gateways, provider callbacks, or real money movement. Add Money remains a local learning MVP top-up.
+- Step 67 does not add loan disbursement, repayment, installments, or wallet credit. It only adds transaction-history visibility for loan requests.
 - `flutter create` timed out in the sandbox, so the minimal Flutter skeleton was created manually and verified with Flutter tooling.
 - Global `mvn` is not available in the Codex session, so backend verification should use Maven Wrapper `.\mvnw.cmd`.
 - Flyway works against local PostgreSQL 17.10 after adding `flyway-database-postgresql`, but logs a warning that this Flyway version officially tested support up to PostgreSQL 16.
