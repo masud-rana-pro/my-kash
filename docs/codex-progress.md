@@ -81,11 +81,12 @@
 - Step 65 Local demo seed data: ran the existing E2E seed script against local PostgreSQL so the main SmartKash tables have at least 15 valid rows for app testing, with seed PIN `12345` for generated demo users.
 - Step 66 Instant Add Money and Inbox Transactions: changed Add Money from admin approval/pending flow to instant customer top-up with idempotency, wallet credit, transaction record, immutable credit ledger entry, refreshed Flutter Add Money UI, and redesigned Inbox with Transactions/Notifications tabs plus receipt bottom sheet.
 - Step 67 Complete Inbox transaction coverage: added loan request transaction records so Loan also appears in Inbox transaction history, and expanded the Inbox Notifications tab to cover the planned core areas: Add Money, Send Money, Merchant Payment, Statement, Transactions, Savings, Loan, and Mobile Recharge.
+- Step 68 Home header visual polish: updated the Flutter Home header so the profile image uses the user's backend avatar when available, balance is hidden behind a tap-to-reveal chip, the top background image is displayed in a clear separate band without controls over it, and Home spacing labels are closer to the provided reference.
 
 ## Last Commit
 
-- Last commit message: `step-67: complete inbox transaction coverage`
-- Last commit hash: pending until Step 67 commit finalization.
+- Last commit message: `step-68: polish home header layout`
+- Last commit hash: pending until Step 68 commit finalization.
 
 ## Important Architecture Decisions
 
@@ -173,6 +174,7 @@
 - Step 66 changes the active Add Money direction: customer submit instantly credits the wallet. Add Money no longer has active admin approve/reject endpoints in the MVP, but the existing `add_money_requests` table is reused as the top-up record table to avoid rewriting committed Flyway migrations.
 - Step 66 places transaction history inside the Flutter Inbox tab, using a `Transactions` tab with search and a receipt bottom sheet, while `Notifications` remains a lightweight alert/offer view until persisted notification history is added.
 - Step 67 ensures the planned Loan feature also contributes a `LOAN_REQUEST` transaction history record when a user submits a loan request. This record is status/history only and does not disburse money or create ledger entries.
+- Step 68 keeps Home UI reference-driven while preserving SmartKash branding: user controls live in a separate top band, the generated header image remains clear, and balance is revealed only after the user taps the balance chip.
 - Money-changing operations require transactions, safe wallet locking, idempotency keys, and audit logs.
 - Codex uses a manual verification workflow by default: do focused changes, update learning/progress docs, run lightweight checks only, commit/push, and provide manual verification commands.
 
