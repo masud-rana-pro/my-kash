@@ -287,3 +287,11 @@
 - Tapping `Pay Bill` shows a clear MVP scope notice instead of doing nothing.
 - Tapping `See More` shows which flows are currently active and says extra services are later scope.
 - Placeholder notices must not create fake transactions or call backend money APIs.
+
+## Flutter Quick Features Navigation
+
+- Quick Feature `History` opens the Transactions screen.
+- Quick Feature `Teletalk` opens the Mobile Recharge screen.
+- Quick Feature `Transfer` opens the Send Money screen.
+- Feature card `Goals` opens the Savings screen.
+- Feature cards `Rewards` and `Offers` show MVP scope notices instead of doing nothing.

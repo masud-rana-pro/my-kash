@@ -77,11 +77,12 @@
 - Step 61 Backend-stored profile image flow: replaced profile image URL input with Flutter image picker upload, added backend multipart profile image upload, stored files under the configured backend profile image folder, saved generated `avatar_image_id` references in PostgreSQL, and exposed profile images through a backend image read endpoint.
 - Step 62 Notification inbox placeholder UI: added a Flutter Inbox screen from bottom navigation that documents important transaction alert categories and local FCM limitations without adding notification history schema or extra backend APIs.
 - Step 63 Home MVP placeholder polish: added clear bottom-sheet notices for currently out-of-scope Home actions such as Cash Out, Pay Bill, and See More instead of leaving taps silent.
+- Step 64 Quick Features demo navigation cleanup: made Home Quick Features actionable by linking History to Transactions, Teletalk to Recharge, Transfer to Send Money, Goals to Savings, and adding honest MVP notices for Rewards and Offers.
 
 ## Last Commit
 
-- Last commit message: `step-63: polish home MVP placeholders`
-- Last commit hash: pending until Step 63 commit finalization.
+- Last commit message: `step-64: polish quick feature navigation`
+- Last commit hash: pending until Step 64 commit finalization.
 
 ## Important Architecture Decisions
 
@@ -164,6 +165,7 @@
 - Step 61 stores profile images in the backend-controlled profile image folder for the learning MVP. PostgreSQL stores only the generated `avatar_image_id`, and Flutter displays images through the backend `/api/users/profile-images/{imageId}` URL.
 - Step 62 keeps notification history out of scope. The Inbox screen is a lightweight user-facing placeholder for the existing FCM transaction alert plan, not a persisted message center.
 - Step 63 keeps disabled MVP features honest in the UI. Out-of-scope Home actions should explain why they are unavailable instead of pretending to work or doing nothing.
+- Step 64 keeps the Home demo path practical. Quick Features should lead to real implemented screens when available and show clear MVP notices when not available.
 - Money-changing operations require transactions, safe wallet locking, idempotency keys, and audit logs.
 - Codex uses a manual verification workflow by default: do focused changes, update learning/progress docs, run lightweight checks only, commit/push, and provide manual verification commands.
 
@@ -250,6 +252,7 @@
 - Step 61 adds local backend profile image storage only; it does not add paid cloud storage, image cropping, camera capture, admin image moderation, CDN delivery, or production-grade object storage.
 - Step 62 adds Inbox UI only; it does not add notification history tables, unread counts, push permission prompts, local notification rendering, or admin notification management.
 - Step 63 adds UI placeholder notices only; it does not implement Cash Out, Pay Bill, provider integration, agent settlement, biller catalog, or new backend APIs.
+- Step 64 updates navigation only; it does not add new backend APIs, campaign/reward engines, offer eligibility rules, or additional money-changing flows.
 - `flutter create` timed out in the sandbox, so the minimal Flutter skeleton was created manually and verified with Flutter tooling.
 - Global `mvn` is not available in the Codex session, so backend verification should use Maven Wrapper `.\mvnw.cmd`.
 - Flyway works against local PostgreSQL 17.10 after adding `flyway-database-postgresql`, but logs a warning that this Flyway version officially tested support up to PostgreSQL 16.
@@ -258,7 +261,7 @@
 
 ## Next Recommended Step
 
-- Step 64: run final end-to-end demo cleanup and fix any manual verification issues reported from the Flutter/backend flow.
+- Step 65: run final end-to-end demo cleanup and fix any manual verification issues reported from the Flutter/backend flow.
 
 ## Standard Step Completion Format
 
