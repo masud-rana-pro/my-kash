@@ -88,3 +88,21 @@ Track step progress in `docs/codex-progress.md`.
 ## Environment
 
 Use `.env.example` as the template for local configuration. Do not hardcode database credentials, Firebase credentials, JWT secrets, or environment-specific values in source code.
+
+## Local Android Run
+
+For real phone or emulator testing on Windows, avoid hardcoding a changing WiFi/LAN IP address. Start the Spring Boot backend first, then run the helper script:
+
+```powershell
+cd D:\github\my-kash
+.\scripts\dev\run_mobile_real_phone.ps1
+```
+
+The script runs `adb reverse tcp:8080 tcp:8080` and starts Flutter with `SMARTKASH_API_BASE_URL=http://127.0.0.1:8080`, so the Android app can reach the PC backend through USB debugging.
+
+If you intentionally test over WiFi instead of USB, run Flutter with:
+
+```powershell
+cd D:\github\my-kash\apps\mobile
+flutter run --dart-define "SMARTKASH_API_BASE_URL=http://<PC-LAN-IP>:8080"
+```

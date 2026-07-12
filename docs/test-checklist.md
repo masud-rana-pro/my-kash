@@ -117,7 +117,9 @@
 
 - `flutter pub get` resolves `dio` and `flutter_secure_storage`.
 - Flutter API base URL can be changed with `--dart-define=SMARTKASH_API_BASE_URL=<url>`.
-- Android emulator default backend URL is `http://10.0.2.2:8080`.
+- SmartKash local Android development default backend URL is `http://127.0.0.1:8080`.
+- For real phone or emulator testing, run `scripts/dev/run_mobile_real_phone.ps1`; it runs `adb reverse tcp:8080 tcp:8080` and starts Flutter with the stable local backend URL.
+- If testing over WiFi instead of USB, pass `--dart-define=SMARTKASH_API_BASE_URL=http://<PC-LAN-IP>:8080` and allow port `8080` in Windows Firewall.
 - Web/desktop local backend URL should usually be `http://localhost:8080`.
 - Backend JWT is stored in secure storage.
 - PIN is not stored in Flutter.

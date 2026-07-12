@@ -184,7 +184,9 @@ Step 35 adds the Flutter API client foundation:
 
 - `dio` is the centralized HTTP client dependency.
 - `flutter_secure_storage` stores the backend JWT only.
-- `AppConfig.backendBaseUrl` uses `SMARTKASH_API_BASE_URL` from Dart defines, with Android emulator default `http://10.0.2.2:8080`.
+- `AppConfig.backendBaseUrl` uses `SMARTKASH_API_BASE_URL` from Dart defines, with local Android development default `http://127.0.0.1:8080`.
+- Real phone and emulator testing should use `adb reverse tcp:8080 tcp:8080`, preferably through `scripts/dev/run_mobile_real_phone.ps1`, so the app can reach the PC Spring Boot backend without depending on a changing WiFi/LAN IP address.
+- WiFi testing is still possible by passing `--dart-define=SMARTKASH_API_BASE_URL=http://<PC-LAN-IP>:8080` and opening backend port `8080` in the firewall.
 - `ApiClient` attaches `Authorization: Bearer <token>` when a backend JWT exists.
 - `ApiException` maps backend `ApiErrorResponse` JSON into a Flutter-friendly exception.
 - `BackendAuthRepository` exchanges Firebase ID token with `POST /api/auth/firebase-login` and saves the backend JWT.
