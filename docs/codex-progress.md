@@ -269,6 +269,7 @@
 - Step 65 inserts local demo records only; it does not change production schema, add migrations, bypass Firebase auth, or create real money movement.
 - Step 66 does not integrate real bank APIs, payment gateways, provider callbacks, or real money movement. Add Money remains a local learning MVP top-up.
 - Step 67 does not add loan disbursement, repayment, installments, or wallet credit. It only adds transaction-history visibility for loan requests.
+- Step 68 adds in-app merchant/agent account opening and real agent-backed Cash Out wallet credit/debit; it does not allow one user account to be both merchant and agent, and it does not add real bank/agent settlement.
 - `flutter create` timed out in the sandbox, so the minimal Flutter skeleton was created manually and verified with Flutter tooling.
 - Global `mvn` is not available in the Codex session, so backend verification should use Maven Wrapper `.\mvnw.cmd`.
 - Flyway works against local PostgreSQL 17.10 after adding `flyway-database-postgresql`, but logs a warning that this Flyway version officially tested support up to PostgreSQL 16.
@@ -277,7 +278,7 @@
 
 ## Next Recommended Step
 
-- Manually run the app with backend running and verify Home -> Cash Out, Home -> Pay Bill, and Inbox -> Transactions receipts using a funded test user and PIN.
+- Manually run the app with backend running, create a merchant account on one test mobile number, create an agent account on another test mobile number, then verify Payment and Cash Out from a separate funded customer account.
 
 ## Standard Step Completion Format
 
